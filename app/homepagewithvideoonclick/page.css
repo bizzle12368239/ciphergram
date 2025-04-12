@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  font-family: 'Cinzel', serif; /* or your preferred font */
+  background-color: black; /* <<< FORCE BLACK BASE */
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background-color: black; /* ensure fade doesn't go white */
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-image: url('/vaultdoororiginal.png');
+  background-size: cover;
+  background-position: center;
+  animation: zoomPan 20s ease-in-out infinite;
+  z-index: 0;
+  background-color: black; /* fallback if image doesn't load */
+}
+
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-image: url('/vaultdoororiginal.png');
+  background-size: cover;
+  background-position: center;
+  animation: zoomPan 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes zoomPan {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-top: 4rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+}
+
+button {
+  position: absolute;
+
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 1.5;
+  background: linear-gradient(to bottom right, #d4af37, #996515);
+  border: none;
+  border-radius: 16px;
+  color: #000;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.7),
+              0 0 15px rgba(212, 175, 55, 0.5),
+              0 0 0 2px rgba(212, 175, 55, 0.8),
+              0 0 0 4px rgba(212, 175, 55, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  border-radius: 16px;
+  z-index: 1;
+}
+
+button:hover {
+  background: linear-gradient(to bottom right, #e5c158, #b8860b);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), 
+              inset 0 2px 4px rgba(255, 255, 255, 0.8),
+              0 0 20px rgba(212, 175, 55, 0.7),
+              0 0 0 2px rgba(212, 175, 55, 0.9),
+              0 0 0 4px rgba(212, 175, 55, 0.5);
+  transform: translateY(-3px);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.7),
+              0 0 10px rgba(212, 175, 55, 0.5),
+              0 0 0 2px rgba(212, 175, 55, 0.8),
+              0 0 0 4px rgba(212, 175, 55, 0.4);
+}
+
+/* Zoom-in animation */
+.zoom-in {
+  animation: zoomInQuick 0.6s ease-out forwards;
+}
+
+@keyframes zoomInQuick {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Fade-out class for button + content */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* Overlay to fade over video */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 999;
+  animation: overlayFadeOut 1s ease-out forwards;
+}
+
+@keyframes overlayFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Black screen transition between page and video */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 998;
+  animation: fadeToBlack 1.5s ease-in forwards;
+}
+@keyframes fadeToBlack {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeFromBlack {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+/* Already exists: this fades away after video starts */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 999;
+  animation: overlayFadeOut 1s ease-out forwards;
+}
+
+@keyframes overlayFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.transition-overlay.fade-again {
+  animation: fadeToBlackAgain 1.2s ease-in forwards;
+  z-index: 998;
+}
+
+@keyframes fadeToBlackAgain {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Footer styles */
+.footer {
+  width: 100%;
+  padding: 1.5rem 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.footer p {
+  color: #d4af37;
+  font-size: 0.9rem;
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.teaser-banner {
+  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.55));
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 0 80px rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 35rem auto 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 90%; /* Ensure there's space on small screens */
+}
+
+/* 🧠 Mobile-specific tweaks */
+@media (max-width: 480px) {
+  .teaser-banner {
+    padding: 1.2rem;
+    max-width: 90%;
+    margin: 20rem auto 2rem; /* adjust vertical spacing if needed */
+  }
+}
+
+
+.teaser-banner:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.2);
+}
+
+
+.teaser-logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 0rem auto 1rem;
+  filter: 
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+    drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+}
+
+
+
+.teaser-heading {
+  font-size: 1.6rem;
+  color: #000000;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+  font-family: 'cinzel', sans-serif;
+  text-transform: capitalize;
+}

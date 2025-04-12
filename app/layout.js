@@ -37,12 +37,12 @@ export default function RootLayout({ children }) {
 
         <footer className="footer">
           <div className="footer-content">
-            <p>&copy; {new Date().getFullYear()} Ciphergram - At Home Escape Games. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Ciphergram®. Cipergram is a Registered Trademark. All rights reserved.</p>
           </div>
         </footer>
 
         <SpeedInsights />
-        <Analytics /> {/* ✅ Added before closing body */}
+        <Analytics /> 
       </body>
     </html>
   );

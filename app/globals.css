@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
-
-
 body, html {
   margin: 0;
   padding: 0;
@@ -28,7 +26,6 @@ body, html {
   z-index: 0;
   background-color: black; /* fallback if image doesn't load */
 }
-
 
 .background {
   position: absolute;
@@ -73,7 +70,7 @@ h1 {
 
 button {
   position: absolute;
-  top: 65%;
+
   padding: 1rem 2.5rem;
   font-size: 1.3rem;
   text-align: center;
@@ -183,7 +180,6 @@ button:active {
   100% { opacity: 0; }
 }
 
-
 /* Already exists: this fades away after video starts */
 .overlay {
   position: fixed;
@@ -240,4 +236,65 @@ button:active {
   margin: 0;
   font-family: 'Cinzel', serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.teaser-banner {
+  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.55));
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 0 80px rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 35rem auto 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 90%; /* Ensure there's space on small screens */
+}
+
+/* 🧠 Mobile-specific tweaks */
+@media (max-width: 480px) {
+  .teaser-banner {
+    padding: 1.2rem;
+    max-width: 90%;
+    margin: 20rem auto 2rem; /* adjust vertical spacing if needed */
+  }
+}
+
+.teaser-banner:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.2);
+}
+
+.teaser-logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 0rem auto 1rem;
+  filter: 
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+    drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+}
+
+.teaser-heading {
+  font-size: 1.6rem;
+  color: #000000;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+  font-family: 'cinzel', sans-serif;
+  text-transform: capitalize;
+}
+
+/* Page fade-in animation */
+.page-fade-in {
+  animation: pageFadeIn 1.5s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

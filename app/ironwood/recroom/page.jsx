@@ -70,6 +70,7 @@ export default function GuessCodewordPage() {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [isNavigating, setIsNavigating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [showContent, setShowContent] = useState(false)
   const inputRef = useRef(null)
 
   const correctAnswers = ['laundry', 'laundryroom', 'the laundry room', 'laundry room',  'the laundry']
@@ -105,6 +106,7 @@ export default function GuessCodewordPage() {
     setFadeOutVideo(true)
     setTimeout(() => {
       setShowVideo(false)
+      setShowContent(true)
     }, 1200)
   }
 
@@ -129,7 +131,7 @@ export default function GuessCodewordPage() {
           <video
             key="intro-video"
             className="intro-video"
-            src="/rec-room-intro.mp4"
+            src="/rec room intro.mp4"
             autoPlay
             muted
             playsInline
@@ -144,7 +146,7 @@ export default function GuessCodewordPage() {
       )}
 
       {!showVideo && (
-        <div className="guess-wrapper fade-in-content">
+        <div className={`guess-wrapper ${showContent ? 'fade-in-content' : ''}`} style={{ backgroundColor: showContent ? 'transparent' : 'black' }}>
           <div className="guess-container">
             <img
               className="logo"
