@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+/* Base Layout */
+body, html {
+  font-family: 'Cinzel', serif;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Background Zoom */
+.background {
+  background-image: url('/The Main Gate.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: zoomBackground 30s ease-in-out infinite;
+  height: 100vh;
+}
+
+@keyframes zoomBackground {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Logo */
+.logo {
+  width: 15%;
+  margin: 0 auto;
+  display: block;
+  padding-top: 25vh;
+}
+
+/* Subheading */
+.subheading-container {
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.subheading {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Cards */
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
+.game-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  width: 45%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.game-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.game-description {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.button {
+  font-family: 'Cinzel', serif;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  border: 2px solid #f5a623;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #f5a623;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #f5a623;
+  color: white;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  color: #fff;
+  margin-top: 50px;
+  font-size: 0.9rem;
+}
+
+/* Transitions & Effects */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background-color: black;
+}
+
+.zoom-in {
+  animation: zoomInQuick 0.6s ease-out forwards;
+}
+
+@keyframes zoomInQuick {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 999;
+  animation: overlayFadeOut 1s ease-out forwards;
+}
+
+@keyframes overlayFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 998;
+  animation: fadeToBlack 1.5s ease-in forwards;
+}
+
+@keyframes fadeToBlack {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeFromBlack {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.transition-overlay.fade-again {
+  animation: fadeToBlackAgain 1.2s ease-in forwards;
+  z-index: 998;
+}
+
+@keyframes fadeToBlackAgain {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
