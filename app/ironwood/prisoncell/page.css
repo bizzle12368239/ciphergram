@@ -220,23 +220,48 @@ html, body {
  
   
   
-  
+.hint-icon {
+  margin-right: 0.3rem;
+  font-size: 1.2rem;
+  display: inline; /* default on desktop */
+}
+
+@media (max-width: 500px) {
   .hint-icon {
-    margin-right: 0.3rem;
-    font-size: 1.2rem;
+    display: none !important;
   }
-  
+}
+
+
+.hint-title {
+  color: #ffd700;
+  white-space: normal;             /* ✅ Allow natural wrapping */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1.5rem;
+}
+@media (max-width: 500px) {
   .hint-title {
-    color: #ffd700;
-    font-family: 'Cinzel', serif;
-    text-align: center;
-    white-space: nowrap;
-    font-size: 1.5rem;
+
+    font-size: 1.1rem;             /* Slightly smaller for small screens */
+    line-height: 1.4;
+    padding: 0 1rem;               /* Give more breathing room */
   }
+}
   
+.hint-toggle {
+  display: inline;
+}
+
+@media (max-width: 500px) {
   .hint-toggle {
-    margin-left: auto;
+    display: none !important;
   }
+}
+
   
   
   .hint-card-body {
@@ -259,6 +284,7 @@ html, body {
     align-items: center; /* ⬅️ this is key! */
     gap: 1.5rem;
     margin-top: 1rem;
+
   }
   
 .hint-left {
@@ -418,6 +444,7 @@ html, body {
     will-change: auto;
     transform: none !important;
     transition: none !important;
+    padding: 2rem 2rem 3rem;
 
   }
   

@@ -212,21 +212,22 @@ button:active {
   }
 }
 
+
 /* Footer styles */
 .footer {
   width: 100%;
-  padding: 1.5rem 0;
   background-color: rgba(0, 0, 0, 0.8);
   border-top: 1px solid rgba(212, 175, 55, 0.3);
-  margin-top: auto;
+  padding: 1.5rem 1rem;
   position: relative;
+  bottom: 0;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
   text-align: center;
 }
 
@@ -236,18 +237,21 @@ button:active {
   margin: 0;
   font-family: 'Cinzel', serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  word-break: break-word;
 }
+
+
 .teaser-banner {
   background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.55));
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 0 80px rgba(255, 255, 255, 0.1);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 20px;
   text-align: center;
-  max-width: 400px;
-  margin: 35rem auto 2rem;
+  max-width: 600px;
+  margin: 30rem auto 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 90%; /* Ensure there's space on small screens */
 }
@@ -255,9 +259,11 @@ button:active {
 /* 🧠 Mobile-specific tweaks */
 @media (max-width: 480px) {
   .teaser-banner {
-    padding: 1.2rem;
-    max-width: 90%;
-    margin: 20rem auto 2rem; /* adjust vertical spacing if needed */
+    background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
+    backdrop-filter: blur(30px);
+    padding: 1rem 1rem;
+    max-width: 80%;
+    margin: 9rem auto 1rem; /* adjust vertical spacing for smaller viewports */
   }
 }
 
@@ -279,6 +285,7 @@ button:active {
 
 .teaser-heading {
   font-size: 1.6rem;
+  margin-bottom: 1rem;
   color: #000000;
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
   font-family: 'cinzel', sans-serif;

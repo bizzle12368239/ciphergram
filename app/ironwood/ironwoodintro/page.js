@@ -81,35 +81,17 @@ export default function Home() {
       <div className="background" />
 
       <div className="content page-fade-in">
-      
-
         <div className="teaser-banner">
-  <img
-    className="teaser-logo"
-    src="/Escape From Ironwood Long Black.png"
-    alt="Escape From Ironwood Logo"
-  />
-  <h2 className="teaser-heading">COMING SOON: <br /><br/>An all-new at-home escape room adventure <br /> <br />Help foil a daring escape from Ironwood Correctional Facility</h2>
-  <br />  
-  <button onClick={() => window.location.href = '/'}> Return to <br />Ciphergram Home
-        </button>
-</div>
+          <img
+            className="teaser-logo"
+            src="/Escape From Ironwood Long Black.png"
+            alt="Escape From Ironwood Logo"
+          />
+          <h2 className="teaser-heading">COMING SOON: <br />Your task is to help foil a daring escape from Ironwood Correctional Facility</h2>
+          <br />  
+          <button onClick={() => window.location.href = '/'}> Return to <br />Ciphergram Home</button>
+        </div>
       </div>
-
-      <footer
-        style={{
-          position: 'absolute',
-          bottom: '1rem',
-          width: '100%',
-          textAlign: 'center',
-          color: '#fff',
-          textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-          fontFamily: 'var(--font-geist-sans)',
-          fontSize: '0.9rem'
-        }}
-      >
-
-      </footer>
 
       {/* Fade to black before video starts */}
       {isTransitioning && <div className="transition-overlay" />}
