@@ -20,7 +20,7 @@ export default function Home() {
             src="Escape From Ironwood Long Black.png"
             alt="Escape From Ironwood Logo"
           />
-          <h2 className="teaser-heading">COMING SOON<br/>An All-New At-Home Escape Experience from Ciphergram Puzzles</h2>
+          <h2 className="teaser-heading">COMING SOON<br/><br />An All-New At-Home Escape Experience from Ciphergram Puzzles</h2>
           <br />  
           <button onClick={handleClick}>
             LEARN MORE <br />
