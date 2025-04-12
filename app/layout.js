@@ -1,5 +1,6 @@
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react'; // ✅ Import for analytics
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
@@ -26,17 +27,22 @@ export default function RootLayout({ children }) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Unica+One&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Unica+One&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+
         <footer className="footer">
           <div className="footer-content">
             <p>&copy; {new Date().getFullYear()} Ciphergram - At Home Escape Games. All rights reserved.</p>
           </div>
         </footer>
 
-        <SpeedInsights /> 
+        <SpeedInsights />
+        <Analytics /> {/* ✅ Added before closing body */}
       </body>
     </html>
   );
