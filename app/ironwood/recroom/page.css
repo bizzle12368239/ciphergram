@@ -112,10 +112,10 @@ html, body {
   }
   
   .page-subtitle {
-    font-size: 1.7rem;
-    margin: 0rem 5rem 0rem 5rem; 
-    
-
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    margin: 0 2rem; /* reduced horizontal margin for smaller devices */
+    text-align: center;
+    line-height: 1.5;
   }
 
   
@@ -366,7 +366,7 @@ html, body {
   color: rgb(0, 0, 0);
   border: 1px solid #e3b74a;
   border-radius: 6px;
-  font-size: 1.4rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.4rem); /* responsive font size */
   font-weight: 300;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -381,6 +381,7 @@ html, body {
   padding: 0.3rem 0.8rem;
 }
 
+
 .hint-nav-button:hover {
   background-color: rgba(227, 183, 74, 0.5);
   color: black;
@@ -391,12 +392,14 @@ html, body {
   font-family: 'Unica One', sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   margin-bottom: -0.5rem;
   margin-top: 1rem;
   color: #e3b74a;
   text-align: center;
+  line-height: 1.2;
 }
+
 
 .hint-group-title {
   font-size: 1.8rem;
