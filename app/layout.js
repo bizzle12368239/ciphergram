@@ -17,11 +17,31 @@ const geistMono = Geist_Mono({
 
 // Metadata
 export const metadata = {
+  title: 'Ciphergram - At-Home Escape Room Games',
   description: 'An immersive at-home escape room experience from Ciphergram Puzzles',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icons/icon.png', type: 'image/png', sizes: '32x32' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180' },
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/icons/safari-pinned-tab.svg',
+        color: '#1a1a1a'
+      }
+    ]
+  },
+  manifest: '/site.webmanifest',
+  themeColor: '#1a1a1a',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Ciphergram'
   },
 };
 
