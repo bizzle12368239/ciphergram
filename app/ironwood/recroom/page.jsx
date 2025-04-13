@@ -135,7 +135,7 @@ export default function GuessCodewordPage() {
           <video
             key="intro-video"
             className="intro-video"
-            src="/rec room intro.mp4"
+            src="/Rec room intro.mp4"
             autoPlay
             muted
             playsInline
