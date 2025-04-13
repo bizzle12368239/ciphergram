@@ -17,8 +17,12 @@ const geistMono = Geist_Mono({
 
 // Metadata
 export const metadata = {
-  title: 'Ciphergram - At Home Escape Games',
-  description: 'Ciphergram - At Home Escape Games',
+  description: 'An immersive at-home escape room experience from Ciphergram Puzzles',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {

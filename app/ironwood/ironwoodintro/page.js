@@ -11,6 +11,10 @@ export default function Home() {
   const [hasFaded, setHasFaded] = useState(false); // prevent re-trigger
   const videoRef = useRef(null);
 
+  useEffect(() => {
+    document.title = 'Ciphergram Puzzles: Escape From Ironwood'
+  }, [])
+
   const handleClick = () => {
     setIsTransitioning(true);
 

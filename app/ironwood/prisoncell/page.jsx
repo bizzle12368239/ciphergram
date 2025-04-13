@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './page.css'
 import Link from 'next/link'
-
+import Head from 'next/head'
 
 const HINT_GROUPS = [
   {
@@ -122,6 +122,10 @@ export default function GuessCodewordPage() {
     }
   }, [showVideo, loading])
 
+  useEffect(() => {
+    document.title = 'Escape From Ironwood - The Prison Cell'
+  }, [])
+
   return (
     <>
       {showVideo && (
@@ -180,7 +184,7 @@ export default function GuessCodewordPage() {
                     handleSubmit()
                   }
                 }}
-                placeholder="..."
+                placeholder=". . ."
                 style={{ fontSize: '1.3rem' }}
               />
               <br />  

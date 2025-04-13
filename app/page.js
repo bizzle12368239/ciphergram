@@ -1,9 +1,14 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import './globals.css';
+import { useEffect } from 'react';
 
 export default function Home() {
   const router = useRouter();
+
+  useEffect(() => {
+    document.title = 'Ciphergram - At-Home Escape Games'
+  }, [])
 
   const handleClick = () => {
     router.push('/ironwood/ironwoodintro');
