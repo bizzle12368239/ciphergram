@@ -628,3 +628,9 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 from { opacity: 0; }
 to { opacity: 1; }
 }
+
+.picker-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+}

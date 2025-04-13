@@ -80,8 +80,12 @@ export default function GuessCodewordPage() {
     setLoading(true)
 
     setTimeout(() => {
-      const normalised = input.trim().toLowerCase().replace(/\s+/g, '')
-      const isCorrect = correctAnswers.some(answer => normalised === answer.replace(/\s+/g, ''))
+      const [date, time] = input.split(' ')
+      const [day, month] = date.split('/')
+      const [hours, minutes] = time.split(':')
+      
+      const isCorrect = day === '25' && month === '12' && hours === '22' && minutes === '15'
+      
       setFeedback(isCorrect
         ? '✅ Correct! Finch has a message for you...'
         : '❌ Incorrect! This does not appear to be the correct date and time of escape...'
@@ -160,21 +164,77 @@ export default function GuessCodewordPage() {
              
  
 
-              <textarea
-                ref={inputRef}
-                className="input-box"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault()
-                    handleSubmit()
-                  }
-                }}
-                placeholder="-- / --    -- : --"
-                style={{ fontSize: '1.3rem' }}
-              />
-              <br />  
+              <div className="date-time-picker">
+                <div className="picker-group">
+                  <div className="picker-label">Date:</div>
+                  <select
+                    value={input.split(' ')[0]?.split('/')[0] || '0'}
+                    onChange={(e) => {
+                      const parts = input.split(' ')
+                      const date = parts[0]?.split('/') || ['0', '0']
+                      date[0] = e.target.value
+                      setInput(`${date.join('/')} ${parts[1] || '00:00'}`)
+                    }}
+                  >
+                    {Array.from({ length: 32 }, (_, i) => (
+                      <option key={i} value={i.toString().padStart(2, '0')}>
+                        {i.toString().padStart(2, '0')}
+                      </option>
+                    ))}
+                  </select>
+                  <span>/</span>
+                  <select
+                    value={input.split(' ')[0]?.split('/')[1] || '0'}
+                    onChange={(e) => {
+                      const parts = input.split(' ')
+                      const date = parts[0]?.split('/') || ['0', '0']
+                      date[1] = e.target.value
+                      setInput(`${date.join('/')} ${parts[1] || '00:00'}`)
+                    }}
+                  >
+                    {Array.from({ length: 13 }, (_, i) => (
+                      <option key={i} value={i.toString().padStart(2, '0')}>
+                        {i.toString().padStart(2, '0')}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="picker-group">
+                  <div className="picker-label">Time:</div>
+                  <select
+                    value={input.split(' ')[1]?.split(':')[0] || '00'}
+                    onChange={(e) => {
+                      const parts = input.split(' ')
+                      const time = parts[1]?.split(':') || ['00', '00']
+                      time[0] = e.target.value
+                      setInput(`${parts[0] || '00/00'} ${time.join(':')}`)
+                    }}
+                  >
+                    {Array.from({ length: 25 }, (_, i) => (
+                      <option key={i} value={i.toString().padStart(2, '0')}>
+                        {i.toString().padStart(2, '0')}
+                      </option>
+                    ))}
+                  </select>
+                  <span>   : </span>
+                  <select
+                    value={input.split(' ')[1]?.split(':')[1] || '00'}
+                    onChange={(e) => {
+                      const parts = input.split(' ')
+                      const time = parts[1]?.split(':') || ['00', '00']
+                      time[1] = e.target.value
+                      setInput(`${parts[0] || '00/00'} ${time.join(':')}`)
+                    }}
+                  >
+                    {Array.from({ length: 61 }, (_, i) => (
+                      <option key={i} value={i.toString().padStart(2, '0')}>
+                        {i.toString().padStart(2, '0')}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <br />
               <button
                 className="submit-button"
                 onClick={handleSubmit}
@@ -241,13 +301,21 @@ export default function GuessCodewordPage() {
             </div>
             <div className="success-details">
             <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
-            <p>Congratulations! You have successfully completed the first phase of your investigation, and I must commend you on your sharp instincts and diligence.</p>
-              <p>Thanks to your efforts, we've learned invaluable information about the inmates' escape plans. However, the situation is far from over, and it is critical that we stay ahead of these individuals. I'm writing to brief you on the next stage of your investigation—one that will bring you closer to uncovering the full scope of the escape plot. You've figured out where their escape is planned; now you need to work out <b>how</b> Moretti is orchestrating it.</p>
-              <p>Part Two of the investigation leads you to the Prison Library, a place where we have noticed some unusual activity. Recently, our guards have observed a troubling pattern: an unusually high number of inmates congregating there during off-hours. While the library is a common space, these gatherings seem orchestrated, and I believe Moretti may be using it as a central hub to coordinate the escape.</p>
-              <p>There is one key element in the library that has raised our concern: the library computer. We have reason to believe that the inmates have been using it to communicate, possibly in a shared inbox that could hold critical information about their next move.</p>
-              <p>I trust that your mind will be sharp enough to piece everything together, and that you'll be able to infiltrate the inmates' digital communications before they can make their next move. Remember, time is of the essence, and our security team is standing by to support you as needed. We can't afford to let Moretti and his crew get any closer to executing their escape plan.</p>
-              <p>As before, once you think you have the answer visit the secure portal (website address) to check your answer or get further assistance.</p>
-              <p>Yours in continued urgency,<br />  <br />
+            <p>Congratulations on successfully solving and linking all three parts of the escape investigation!</p>
+
+<p>Thanks to your efforts, we now understand the where, how, and when of the escape, disrupting Moretti's carefully orchestrated plot. Without your intervention, the inmates might have succeeded and put the wider society at risk.</p>
+
+<p>Your sharp mind, attention to detail, and unwavering determination have proven invaluable in uncovering the full scope of Moretti and his crew's escape plan.</p>
+
+<p>On behalf of Ironwood Correctional Facility, I extend my deepest thanks.</p>
+
+<p>This gets me thinking…</p>
+
+<p>Your same investigative skills could help us elsewhere too. Remarkably, detectives never solved Moretti's Midnight Vault Heist or traced the stolen millions in art and diamonds; perhaps your insight could unravel that mystery too?</p>
+
+<p>With my sincerest gratitude,</p>
+
+<p>Until we meet again,<br />  <br />
               Warden Douglas Finch<br />
         
             Ironwood Correctional Facility</p>

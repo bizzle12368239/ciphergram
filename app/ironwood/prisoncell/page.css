@@ -630,3 +630,9 @@ html, body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.picker-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+}

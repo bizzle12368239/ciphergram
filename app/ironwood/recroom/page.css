@@ -633,3 +633,44 @@ html, body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.date-time-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.picker-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.picker-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.date-time-picker select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 1rem;
+  height: 2.5rem;
+  line-height: 2.5rem; /* Matches height for vertical centering */
+  text-align: center;   /* Optional: horizontal centering */
+}
+
+
+
+
+.date-time-picker span {
+  font-weight: bold;
+}
+
+.picker-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
