@@ -258,7 +258,7 @@ export default function GuessCodewordPage() {
               className="success-button"
               onClick={() => setShowSuccess(false)}
             >
-              Contratulations! <br></br><br></br>You have have completed the game. Thank you for playing!
+              You have have completed the game. Thank you for playing!
             </button>
           </div>
         </div>

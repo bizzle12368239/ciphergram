@@ -251,7 +251,7 @@ html, body {
 @media (max-width: 500px) {
   .hint-title {
 
-    font-size: 1.1rem;             /* Slightly smaller for small screens */
+    font-size: 1rem;             /* Slightly smaller for small screens */
     line-height: 1.4;
     padding: 0 1rem;               /* Give more breathing room */
   }
@@ -268,12 +268,13 @@ html, body {
 }
 
   
-  .hint-card-body {
-    margin-top: 1rem;
-    color: #ddd;
-    font-size: 1.2rem;
-    line-height: 1.6;
-  }
+.hint-card-body {
+  margin-top: 1rem;
+  color: #ddd;
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* responsive font size */
+  line-height: 1.6;
+}
+
 
   .hint-card-header span {
     display: flex;
@@ -373,7 +374,7 @@ html, body {
   font-family: 'Unica One', sans-serif;
   min-width: 80px;
   line-height: 0.4;
-  margin-bottom: 0.2rem;
+  margin-bottom: -1rem;
   margin-top: 0.2rem;
   display: flex;
   align-items: center;
@@ -402,10 +403,11 @@ html, body {
 
 
 .hint-group-title {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #ffd700;
   text-align: center;
   margin-top: 0rem;
+  margin-bottom: -1.5rem;
   font-weight: 800;
   letter-spacing: 1px;
 }
@@ -565,10 +567,11 @@ html, body {
 
 .success-message {
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 1.5rem;
+  margin-top: -1rem;
 }
 
 .success-details {
@@ -613,6 +616,7 @@ html, body {
   padding: 1rem 2rem;
   font-size: 1.2rem;
   border-radius: 10px;
+  margin-bottom: -0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Unica One', sans-serif;
