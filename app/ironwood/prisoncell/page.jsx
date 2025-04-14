@@ -172,7 +172,7 @@ export default function GuessCodewordPage() {
                 </audio>
               </div>
               <br />
-              <div className="picker-label">Escape Location is:</div>
+              <div className="picker-label">Escape Location:</div>
               <textarea
                 ref={inputRef}
                 className="input-box"
