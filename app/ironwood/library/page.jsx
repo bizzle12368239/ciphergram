@@ -214,8 +214,8 @@ export default function GuessCodewordPage() {
 
             <div className="hints">
               {currentGroup.hints.map((hint, i) => (
-                <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`}>
-                  <div className="hint-card-header" onClick={() => toggleHint(i)}>
+                <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
+                  <div className="hint-card-header">
                     <div className="hint-left">
                       <span className="hint-icon">📌</span>
                       <span className="hint-title">{hint.title}</span>
