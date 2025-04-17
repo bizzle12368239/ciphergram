@@ -629,6 +629,9 @@ html, body {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin-bottom: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 400;
+  letter-spacing: -0.9px;
 }
 
 .success-details p {
