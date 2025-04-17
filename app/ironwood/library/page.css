@@ -60,7 +60,7 @@ button {
   position: relative;
   min-height: 100dvh; /* Use device height but let it expand */
   width: 100%;
-  background-image: url('/The Prison Cell.jpg');
+  background-image: url('/The Library.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -76,26 +76,32 @@ button {
 
 .guess-container {
   background-color: rgba(0, 0, 0, 0.75);
-  padding: 2rem 2rem 6rem;
+  padding: 2rem 2rem 2rem;
   border-radius: 20px;
   text-align: center;
   width: 90%;
   max-width: 800px;
   color: white;
   font-family: 'Cinzel', serif;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
 
-  /* ✂️ REMOVE these two lines */
-  /* max-height: 90vh; */
-  /* overflow-y: auto; */
 
   box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.guess-container:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.9),
+              0 0 0 1px rgba(255, 255, 255, 0.2);
+}
 
 .page-title {
   font-family: 'Unica One', sans-serif;
@@ -196,19 +202,39 @@ button {
 
 
 .hint-card {
-  background-color: rgba(255, 255, 255, 0.2); /* increase opacity */
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1rem 1.5rem;
   margin-bottom: 1.2rem;
   width: 100%;
   max-width: 600px;
-  transition: none;
+  transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 0 2px rgba(227, 183, 74, 0.1);
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
+  border: 1px solid rgba(227, 183, 74, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.hint-card:hover {
+  transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 0 2px rgba(227, 183, 74, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .hint-card.open {
-  transition: all 0.3s ease; /* Transition only for expanding the hint */
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 0 2px rgba(227, 183, 74, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .hint-card-header {
@@ -217,10 +243,8 @@ button {
   justify-content: space-between;
   width: 100%;
   position: relative;
+  padding: 0.5rem 0;
 }
-
-
-
 
 .hint-icon {
   margin-right: 0.3rem;
@@ -234,20 +258,21 @@ button {
   }
 }
 
-
 .hint-title {
   color: #ffd700;
-  white-space: normal;             /* ✅ Allow natural wrapping */
+  white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
   font-family: 'Cinzel', serif;
   text-align: center;
   white-space: nowrap;
   font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
 }
+
 @media (max-width: 500px) {
   .hint-title {
-
     font-size: 1.1rem;             /* Slightly smaller for small screens */
     line-height: 1.4;
     padding: 0 1rem;               /* Give more breathing room */
@@ -264,21 +289,18 @@ button {
   }
 }
 
-
 .hint-card-body {
   margin-top: 1rem;
   color: #ddd;
-  font-size: clamp(1rem, 2.5vw, 1.2rem); /* responsive font size */
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   line-height: 1.6;
+  padding: 1rem;
 }
-
-
 
 .hint-card-header span {
   display: flex;
   align-items: center;
 }
-
 
 .hints {
   width: 100%;
@@ -427,16 +449,16 @@ border-color: #ffd700;
 transition: none !important;
 }
 
-
-
 .hint-card-body-wrapper {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
 }
 
 .hint-card-body-wrapper.open {
   max-height: 200px;
+  opacity: 1;
 }
 
 .guess-container {
@@ -448,7 +470,7 @@ transition: none !important;
   will-change: auto;
   transform: none !important;
   transition: none !important;
-  padding: 2rem 2rem 3rem;
+  margin-bottom: 3rem !important;
 }
 
 .game-section-scrollable {

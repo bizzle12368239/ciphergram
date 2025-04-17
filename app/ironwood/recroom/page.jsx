@@ -160,7 +160,7 @@ export default function GuessCodewordPage() {
               src="/Escape From Ironwood Long Orange.png"
               alt="Escape From Ironwood Logo"
             />
-            <h2 className="section-heading">- The Rec Room -</h2>
+            <h2 className="section-heading">Part III<br />- The Rec Room -</h2>
             <div className="page-subtitle">
               Open the envelope marked <strong>"The Rec Room "</strong> to get your instructions from Finch.
               <br /><br />
