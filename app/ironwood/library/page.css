@@ -223,6 +223,15 @@ button {
   transform: perspective(1000px) rotateX(0deg) translateY(0);
   border: 1px solid rgba(227, 183, 74, 0.2);
   backdrop-filter: blur(5px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hint-card:focus {
+  outline: none;
+}
+
+.hint-card:focus-visible {
+  outline: none;
 }
 
 .hint-card:hover {
