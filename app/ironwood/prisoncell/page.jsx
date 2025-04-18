@@ -117,12 +117,6 @@ export default function GuessCodewordPage() {
   const currentGroup = HINT_GROUPS[currentGroupIndex]
 
   useEffect(() => {
-    if (!showVideo && !loading && inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [showVideo, loading])
-
-  useEffect(() => {
     document.title = 'Escape From Ironwood - The Prison Cell'
   }, [])
 
@@ -155,7 +149,7 @@ export default function GuessCodewordPage() {
               src="/Escape From Ironwood Long Orange.png"
               alt="Escape From Ironwood Logo"
             />
-            <h2 className="section-heading">Part I<br />- The Prison Cell -</h2>
+            <h2 className="section-heading">Part I<br />- TThe Prison Cell -</h2>
             <div className="page-subtitle">
               Open the envelope marked <strong>"The Prison Cell"</strong> to get your instructions from Finch.
               <br /><br />

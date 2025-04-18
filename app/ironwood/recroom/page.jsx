@@ -122,12 +122,6 @@ export default function GuessCodewordPage() {
   const currentGroup = HINT_GROUPS[currentGroupIndex]
 
   useEffect(() => {
-    if (!showVideo && !loading && inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [showVideo, loading])
-
-  useEffect(() => {
     document.title = 'Escape From Ironwood - The Rec Room'
   }, [])
 

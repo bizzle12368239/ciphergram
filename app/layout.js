@@ -62,11 +62,28 @@ export default function RootLayout({ children }) {
 
         <footer className="footer">
           <div className="footer-content">
-            <p>&copy; {new Date().getFullYear()} Ciphergram®. Cipergram is a Registered Trademark. All rights reserved.</p>
+            <img 
+              src="/CIPHERGRAM LOGO ONLY V3 .png" 
+              alt="Ciphergram Logo" 
+              className="footer-logo" 
+            />
+            <p>&copy; {new Date().getFullYear()} Ciphergram®. Ciphergram is a Registered Trademark. All rights reserved.</p>
           </div>
         </footer>
 
-        <SpeedInsights />
+        <SpeedInsights />        .footer-logo {
+          display: block;
+          margin: 0 auto; /* Center the image horizontally */
+          padding: 0; /* Remove any padding */
+        }        .footer-logo {
+          display: block;
+          margin: 0 auto; /* Center the image horizontally */
+          padding: 0; /* Remove any padding */
+        }        .footer-logo {
+          display: block;
+          margin: 0 auto; /* Center the image horizontally */
+          padding: 0; /* Remove any padding */
+        }
         <Analytics /> 
       </body>
     </html>
