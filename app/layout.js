@@ -71,19 +71,7 @@ export default function RootLayout({ children }) {
           </div>
         </footer>
 
-        <SpeedInsights />        .footer-logo {
-          display: block;
-          margin: 0 auto; /* Center the image horizontally */
-          padding: 0; /* Remove any padding */
-        }        .footer-logo {
-          display: block;
-          margin: 0 auto; /* Center the image horizontally */
-          padding: 0; /* Remove any padding */
-        }        .footer-logo {
-          display: block;
-          margin: 0 auto; /* Center the image horizontally */
-          padding: 0; /* Remove any padding */
-        }
+        <SpeedInsights />
         <Analytics /> 
       </body>
     </html>
