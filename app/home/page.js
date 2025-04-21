@@ -141,14 +141,14 @@ export default function Home() {
             <p className="game-description">
               A thrilling escape room puzzle you can play from the comfort of your home. Solve mysteries, crack codes, and unlock the secrets of Ironwood.
             </p>
-            <button className="button">Buy Now (Coming Soon)</button>
+            <button className="button">Coming Soon</button>
           </div>
 
           {/* The Midnight Vault Heist */}
           <div className="game-card">
             <h2 className="game-title">The Midnight Vault Heist</h2>
             <p className="game-description">
-              A highly anticipated puzzle game set in a high-security vault. Will you be able to break in and escape without triggering the alarm? Coming soon!
+              A highly anticipated puzzle game set in a high-security vault. Will you be able to break in and escape without triggering the alarm?
             </p>
             <button className="button">Coming Soon</button>
           </div>
