@@ -153,19 +153,8 @@ export default function GuessCodewordPage() {
             <div className="page-subtitle">
               Open the envelope marked <strong>"The Prison Cell"</strong> to get your instructions from Finch.
               <br /><br />
-              The secret audio recording, taken from inside Ironwood is available here:
-              <br /><br />
               
-              <div className="audio-player-container">
-                <audio 
-                  controls 
-                  className="audio-player"
-                  src="/Tapping Sounds.mp3"
-                >
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-              <br />
+  
               <div className="picker-label">Escape Location:</div>
               <textarea
                 ref={inputRef}
@@ -193,7 +182,18 @@ export default function GuessCodewordPage() {
               {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
               <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
               <br />
-
+              The secret audio recording, taken from inside Ironwood is available here:
+              <br />
+              
+              <div className="audio-player-container">
+                <audio 
+                  controls 
+                  className="audio-player"
+                  src="/Tapping Sounds.mp3"
+                >
+                  Your browser does not support the audio element.
+                </audio>
+              </div><br />
               <div className="help-text">
                 Need some help?<br /><br />
                 Reveal a hint below for the puzzle you're stuck on, one hint at a time.
