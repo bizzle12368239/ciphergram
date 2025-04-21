@@ -321,7 +321,7 @@ export default function GuessCodewordPage() {
             </div>
             <button 
               className="success-button"
-              onClick={() => setShowSuccess(false)}
+              onClick={() => window.location.href = 'https://ciphergrampuzzles.com'}
             >
               You have have completed the game. Thank you for playing!
             </button>
