@@ -70,6 +70,7 @@ export default function GuessCodewordPage() {
   const [isNavigating, setIsNavigating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const inputRef = useRef(null)
+  const audioRef = useRef(null)
 
   const correctAnswers = ['airvent', 'air vent']
 
@@ -104,8 +105,25 @@ export default function GuessCodewordPage() {
     setFadeOutVideo(true)
     setTimeout(() => {
       setShowVideo(false)
-    }, 1200)
+    }, 500)
   }
+
+  useEffect(() => {
+    // Only try to play audio after video is hidden
+    if (!showVideo && audioRef.current) {
+      audioRef.current.volume = 0.3
+      const playPromise = audioRef.current.play()
+      console.log('Attempting to play audio...')
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => console.log('Audio started playing successfully'))
+          .catch(error => {
+            console.error('Audio playback error:', error)
+          })
+      }
+    }
+  }, [showVideo]) // Run this effect when showVideo changes
 
   const setCurrentGroupIndexAndResetHints = (index) => {
     setIsNavigating(true)
@@ -127,6 +145,7 @@ export default function GuessCodewordPage() {
             key="intro-video"
             className="intro-video"
             autoPlay
+          
             playsInline
             onEnded={handleVideoEnd}
           >
@@ -141,91 +160,103 @@ export default function GuessCodewordPage() {
       )}
 
       {!showVideo && (
-        <div className="guess-wrapper fade-in-content">
-          <div className="guess-container">
-            <img
-              className="logo"
-              src="/Escape From Ironwood Long Orange.png"
-              alt="Escape From Ironwood Logo"
-            />
-            <h2 className="section-heading">Part II<br />- The Library -</h2>
-            <div className="page-subtitle">
-              Open the envelope marked <strong>"The Library"</strong> to get your instructions from Finch.
-              <br /><br />
-            
-              <div className="picker-label">Escape Method:</div>
-
-              <textarea
-                ref={inputRef}
-                className="input-box"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault()
-                    handleSubmit()
-                  }
-                }}
-                placeholder=". . ."
-                style={{ fontSize: '1.3rem' }}
+        <>
+          <audio
+            ref={audioRef}
+            src="/Library room background audio.mp3"
+            loop
+            preload="auto"
+            autoPlay
+            onError={(e) => console.error('Audio loading error:', e)}
+            onCanPlay={() => console.log('Audio is ready to play')}
+            onPlay={() => console.log('Audio play event triggered')}
+          />
+          <div className="guess-wrapper fade-in-content">
+            <div className="guess-container">
+              <img
+                className="logo"
+                src="/Escape From Ironwood Long Orange.png"
+                alt="Escape From Ironwood Logo"
               />
-              <br />  
-              <button
-                className="submit-button"
-                onClick={handleSubmit}
-                disabled={loading || input.trim() === ''}
-              >
-                {loading ? <span className="spinner"></span> : 'Submit'}
-              </button>
+              <h2 className="section-heading">Part II<br />- The Library -</h2>
+              <div className="page-subtitle">
+                Open the envelope marked <strong>"The Library"</strong> to get your instructions from Finch.
+                <br /><br /> When you think you have the Escape Method, type the answer below. 
+                <br /><br /> 
+                <div className="picker-label">Escape Method:</div>
 
-              {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
-              <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
-              <br />
+                <textarea
+                  ref={inputRef}
+                  className="input-box"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      handleSubmit()
+                    }
+                  }}
+                  placeholder=". . ."
+                  style={{ fontSize: '1.3rem' }}
+                />
+                <br />  
+                <button
+                  className="submit-button"
+                  onClick={handleSubmit}
+                  disabled={loading || input.trim() === ''}
+                >
+                  {loading ? <span className="spinner"></span> : 'Submit'}
+                </button>
 
-              <div className="help-text">
-                Need some help?<br /><br />
-                Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
+                {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
+                <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
+                <br />
+
+                <div className="help-text">
+                  Need some help?<br /><br />
+                  Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
+                </div>
+              </div>
+
+              <div className="hint-group-title">{currentGroup.title}</div>
+              <div className="hint-nav-buttons">
+                <button 
+                  className="hint-nav-button"
+                  onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
+                  style={{ padding: '1rem 2rem' }}
+                >
+                  {'< Back'}
+                </button>
+                <button 
+                  className="hint-nav-button"
+                  onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
+                  style={{ padding: '1rem 2rem' }}
+                >
+                  {'Next >'}
+                </button>
+              </div>
+
+              <div className="hints">
+                {currentGroup.hints.map((hint, i) => (
+                  <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
+                    <div className="hint-card-header">
+                      <div className="hint-left">
+                        <span className="hint-icon">📌</span>
+                        <span className="hint-title">{hint.title}</span>
+                      </div>
+                      <span className="hint-toggle">
+                        {expandedHints[currentGroupIndex][i] ? '−' : '+'}
+                      </span>
+                    </div>
+                    <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
+                      <div className="hint-card-body">{hint.content}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-
-            <div className="hint-group-title">{currentGroup.title}</div>
-            <div className="hint-nav-buttons">
-              <button 
-                className="hint-nav-button"
-                onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
-                style={{ padding: '1rem 2rem' }}
-              >
-                {'< Back'}
-              </button>
-              <button 
-                className="hint-nav-button"
-                onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
-                style={{ padding: '1rem 2rem' }}
-              >
-                {'Next >'}
-              </button>
-            </div>
-
-            <div className="hints">
-              {currentGroup.hints.map((hint, i) => (
-                <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
-                  <div className="hint-card-header">
-                    <div className="hint-left">
-                      <span className="hint-icon">📌</span>
-                      <span className="hint-title">{hint.title}</span>
-                    </div>
-                    <span className="hint-toggle">
-                      {expandedHints[currentGroupIndex][i] ? '−' : '+'}
-                    </span>
-                  </div>
-                  <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
-                    <div className="hint-card-body">{hint.content}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
+        </>
       )}
 
       {showSuccess && (

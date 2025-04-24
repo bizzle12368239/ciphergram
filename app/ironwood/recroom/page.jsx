@@ -158,7 +158,7 @@ export default function GuessCodewordPage() {
             <div className="page-subtitle">
               Open the envelope marked <strong>"The Rec Room "</strong> to get your instructions from Finch.
               <br /><br />
-             
+             When you think you have the Escape Date and Time, enter your answer below.           <br /><br />
  
 
               <div className="date-time-picker">
