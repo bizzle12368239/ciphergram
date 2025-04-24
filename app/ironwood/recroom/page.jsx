@@ -66,11 +66,13 @@ export default function GuessCodewordPage() {
   const [loading, setLoading] = useState(false)
   const [showVideo, setShowVideo] = useState(true)
   const [fadeOutVideo, setFadeOutVideo] = useState(false)
+  const [showContent, setShowContent] = useState(false)
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [isNavigating, setIsNavigating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-  const [showContent, setShowContent] = useState(false)
   const inputRef = useRef(null)
+  const audioRef = useRef(null)
+  const videoRef = useRef(null)
 
   const correctAnswers = ['laundry', 'laundryroom', 'the laundry room', 'laundry room',  'the laundry']
 
@@ -110,7 +112,7 @@ export default function GuessCodewordPage() {
     setTimeout(() => {
       setShowVideo(false)
       setShowContent(true)
-    }, 1200)
+    }, 1000)
   }
 
   const setCurrentGroupIndexAndResetHints = (index) => {
@@ -125,18 +127,37 @@ export default function GuessCodewordPage() {
     document.title = 'Escape From Ironwood - The Rec Room'
   }, [])
 
+  useEffect(() => {
+    // Only try to play audio after video is hidden
+    if (!showVideo && audioRef.current) {
+      audioRef.current.volume = 0.3
+      const playPromise = audioRef.current.play()
+      console.log('Attempting to play audio...')
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => console.log('Audio started playing successfully'))
+          .catch(error => {
+            console.error('Audio playback error:', error)
+          })
+      }
+    }
+  }, [showVideo])
+
   return (
     <>
       {showVideo && (
         <div className={`video-overlay ${fadeOutVideo ? 'fade-out' : ''}`}>
           <video
+            ref={videoRef}
             key="intro-video"
             className="intro-video"
             autoPlay
             playsInline
+            muted
             onEnded={handleVideoEnd}
           >
-            <source src="/Intro Video Rec Room.mp4" type="video/mp4" />
+            <source src="/rec room intro.mp4" type="video/mp4" />
           </video>
           <div className="skip-wrapper">
             <button className="skip-intro" onClick={handleVideoEnd}>
@@ -148,6 +169,15 @@ export default function GuessCodewordPage() {
 
       {!showVideo && (
         <div className={`guess-wrapper ${showContent ? 'fade-in-content' : ''}`} style={{ backgroundColor: showContent ? 'transparent' : 'black' }}>
+          <audio
+            ref={audioRef}
+            src="/rec room background audio.mp3"
+            loop
+            preload="auto"
+            onError={(e) => console.error('Audio loading error:', e)}
+            onCanPlay={() => console.log('Audio is ready to play')}
+            onPlay={() => console.log('Audio play event triggered')}
+          />
           <div className="guess-container">
             <img
               className="logo"
