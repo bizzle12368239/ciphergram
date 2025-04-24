@@ -67,10 +67,15 @@ export default function GuessCodewordPage() {
   const [loading, setLoading] = useState(false)
   const [showVideo, setShowVideo] = useState(true)
   const [fadeOutVideo, setFadeOutVideo] = useState(false)
+  const [playAmbiance, setPlayAmbiance] = useState(false)
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [isNavigating, setIsNavigating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const inputRef = useRef(null)
+  const ambianceRef = useRef(null)
+  const tappingSoundRef = useRef(null)
+  const resumeTimeoutRef = useRef(null)
+  const fadeIntervalRef = useRef(null)
 
   const correctAnswers = ['laundry', 'laundryroom', 'the laundry room', 'laundry room',  'the laundry']
 
@@ -105,7 +110,8 @@ export default function GuessCodewordPage() {
     setFadeOutVideo(true)
     setTimeout(() => {
       setShowVideo(false)
-    }, 1200)
+      setPlayAmbiance(true)
+    }, 1000)
   }
 
   const setCurrentGroupIndexAndResetHints = (index) => {
@@ -120,6 +126,72 @@ export default function GuessCodewordPage() {
     document.title = 'Escape From Ironwood - The Prison Cell'
   }, [])
 
+  const fadeInAmbiance = () => {
+    if (!ambianceRef.current || !playAmbiance) return;
+    
+    ambianceRef.current.volume = 0;
+    ambianceRef.current.play();
+    
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+    }
+    
+    let volume = 0;
+    fadeIntervalRef.current = setInterval(() => {
+      if (volume < 0.3) {
+        volume += 0.02;
+        ambianceRef.current.volume = volume;
+      } else {
+        clearInterval(fadeIntervalRef.current);
+        fadeIntervalRef.current = null;
+      }
+    }, 50);
+  };
+
+  const handleTappingSoundPlay = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+      fadeIntervalRef.current = null;
+    }
+    if (ambianceRef.current) {
+      ambianceRef.current.pause();
+    }
+  };
+
+  const handleTappingSoundPause = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
+    resumeTimeoutRef.current = setTimeout(() => {
+      fadeInAmbiance();
+      resumeTimeoutRef.current = null;
+    }, 5000);
+  };
+
+  const handleTappingSoundEnded = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
+    fadeInAmbiance();
+  };
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
+      if (fadeIntervalRef.current) {
+        clearInterval(fadeIntervalRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       {showVideo && (
@@ -127,12 +199,12 @@ export default function GuessCodewordPage() {
           <video
             key="intro-video"
             className="intro-video"
-            src="/prison cell intro.mp4"
             autoPlay
-            muted
             playsInline
             onEnded={handleVideoEnd}
-          />
+          >
+            <source src="/prison cell intro.mp4" type="video/mp4" />
+          </video>
           <div className="skip-wrapper">
             <button className="skip-intro" onClick={handleVideoEnd}>
               Skip Intro
@@ -142,102 +214,114 @@ export default function GuessCodewordPage() {
       )}
 
       {!showVideo && (
-        <div className="guess-wrapper fade-in-content">
-          <div className="guess-container">
-            <img
-              className="logo"
-              src="/Escape From Ironwood Long Orange.png"
-              alt="Escape From Ironwood Logo"
-            />
-            <h2 className="section-heading">Part I<br />- The Prison Cell -</h2>
-            <div className="page-subtitle">
-              Open the envelope marked <strong>"The Prison Cell"</strong> to get your instructions from Finch.
-              <br /><br />
-              Here you can get hints and 
-      <br /><br />
-              <div className="picker-label">Escape Location:</div>
-              <textarea
-                ref={inputRef}
-                className="input-box"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault()
-                    handleSubmit()
-                  }
-                }}
-                placeholder=". . ."
-                style={{ fontSize: '1.3rem' }}
+        <>
+          <audio
+            ref={ambianceRef}
+            autoPlay={playAmbiance}
+            loop
+            src="/prison cell ambiance 1.mp3"
+            volume={0.3}
+          />
+          <div className="guess-wrapper fade-in-content">
+            <div className="guess-container">
+              <img
+                className="logo"
+                src="/Escape From Ironwood Long Orange.png"
+                alt="Escape From Ironwood Logo"
               />
-              <br />  
-              <button
-                className="submit-button"
-                onClick={handleSubmit}
-                disabled={loading || input.trim() === ''}
-              >
-                {loading ? <span className="spinner"></span> : 'Submit'}
-              </button>
-
-              {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
-              <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
-              <br />
-              The secret audio recording, taken from inside Ironwood is available here:
-              <br />
-              
-              <div className="audio-player-container">
-                <audio 
-                  controls 
-                  className="audio-player"
-                  src="/Tapping Sounds.mp3"
+              <h2 className="section-heading">Part I<br />- The Prison Cell -</h2>
+              <div className="page-subtitle">
+                Open the envelope marked <strong>"The Prison Cell"</strong> to get your instructions from Finch.
+                <br /><br />
+       When you think you have the answer, type the Escape Location below.  <br /><br />
+                <div className="picker-label">Escape Location:</div>
+                <textarea
+                  ref={inputRef}
+                  className="input-box"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      handleSubmit()
+                    }
+                  }}
+                  placeholder=". . ."
+                  style={{ fontSize: '1.3rem' }}
+                />
+                <br />  
+                <button
+                  className="submit-button"
+                  onClick={handleSubmit}
+                  disabled={loading || input.trim() === ''}
                 >
-                  Your browser does not support the audio element.
-                </audio>
-              </div><br />
-              <div className="help-text">
-                Need some help?<br /><br />
-                Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
+                  {loading ? <span className="spinner"></span> : 'Submit'}
+                </button>
+
+                {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
+                <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
+                <br />
+                The secret audio recording, taken from inside Ironwood is available here:
+                <br />
+                
+                <div className="audio-player-container">
+                  <audio 
+                    ref={tappingSoundRef}
+                    controls 
+                    className="audio-player"
+                    src="/Tapping Sounds.mp3"
+                    onPlay={handleTappingSoundPlay}
+                    onPause={handleTappingSoundPause}
+                    onEnded={handleTappingSoundEnded}
+                  >
+                    Your browser does not support the audio element.
+                  </audio>
+                </div><br />
+                <div className="help-text">
+                  Need some help?<br /><br />
+                  Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
+                </div>
+              </div>
+
+              <div className="hint-group-title">{currentGroup.title}</div>
+              <div className="hint-nav-buttons">
+                <button 
+                  className="hint-nav-button"
+                  onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
+                  style={{ padding: '1rem 2rem' }}
+                >
+                  {'< Back'}
+                </button>
+                <button 
+                  className="hint-nav-button"
+                  onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
+                  style={{ padding: '1rem 2rem' }}
+                >
+                  {'Next >'}
+                </button>
+              </div>
+
+              <div className="hints">
+                {currentGroup.hints.map((hint, i) => (
+                  <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
+                    <div className="hint-card-header">
+                      <div className="hint-left">
+                        <span className="hint-icon">📌</span>
+                        <span className="hint-title">{hint.title}</span>
+                      </div>
+                      <span className="hint-toggle">
+                        {expandedHints[currentGroupIndex][i] ? '−' : '+'}
+                      </span>
+                    </div>
+                    <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
+                      <div className="hint-card-body">{hint.content}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-
-            <div className="hint-group-title">{currentGroup.title}</div>
-            <div className="hint-nav-buttons">
-              <button 
-                className="hint-nav-button"
-                onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
-                style={{ padding: '1rem 2rem' }}
-              >
-                {'< Back'}
-              </button>
-              <button 
-                className="hint-nav-button"
-                onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
-                style={{ padding: '1rem 2rem' }}
-              >
-                {'Next >'}
-              </button>
-            </div>
-
-            <div className="hints">
-              {currentGroup.hints.map((hint, i) => (
-                <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
-                  <div className="hint-card-header">
-                    <div className="hint-left">
-                      <span className="hint-icon">📌</span>
-                      <span className="hint-title">{hint.title}</span>
-                    </div>
-                    <span className="hint-toggle">
-                      {expandedHints[currentGroupIndex][i] ? '−' : '+'}
-                    </span>
-                  </div>
-                  <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
-                    <div className="hint-card-body">{hint.content}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
+        </>
       )}
 
       {showSuccess && (

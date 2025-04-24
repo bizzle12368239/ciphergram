@@ -126,12 +126,12 @@ export default function GuessCodewordPage() {
           <video
             key="intro-video"
             className="intro-video"
-            src="/The Library intro.mp4"
             autoPlay
-            muted
             playsInline
             onEnded={handleVideoEnd}
-          />
+          >
+            <source src="/The Library intro.mp4" type="video/mp4" />
+          </video>
           <div className="skip-wrapper">
             <button className="skip-intro" onClick={handleVideoEnd}>
               Skip Intro
