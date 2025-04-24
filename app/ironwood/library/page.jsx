@@ -184,7 +184,7 @@ export default function GuessCodewordPage() {
 
               <div className="help-text">
                 Need some help?<br /><br />
-                Reveal a hint below for the puzzle you're stuck on, one hint at a time.
+                Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
               </div>
             </div>
 
@@ -236,7 +236,7 @@ export default function GuessCodewordPage() {
             </div>
             <div className="success-details">
             <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
-            <p>Congratulations once again on successfully completing Part Two of your investigation!</p>
+            <p>Congratulations once again on successfully completing Part II of your investigation!</p>
 
 <p>Your efforts to crack the code in the library have brought us much closer to understanding the full extent of the escape plot.</p>
 

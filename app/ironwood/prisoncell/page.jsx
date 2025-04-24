@@ -153,8 +153,8 @@ export default function GuessCodewordPage() {
             <div className="page-subtitle">
               Open the envelope marked <strong>"The Prison Cell"</strong> to get your instructions from Finch.
               <br /><br />
-              
-  
+              Here you can get hints and 
+      <br /><br />
               <div className="picker-label">Escape Location:</div>
               <textarea
                 ref={inputRef}
@@ -196,7 +196,7 @@ export default function GuessCodewordPage() {
               </div><br />
               <div className="help-text">
                 Need some help?<br /><br />
-                Reveal a hint below for the puzzle you're stuck on, one hint at a time.
+                Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
               </div>
             </div>
 
@@ -256,11 +256,11 @@ export default function GuessCodewordPage() {
 
 <p>I'm writing to brief you on the next stage of your investigation—one that will bring you closer to uncovering the full scope of the escape plot. You've figured out where their escape is planned; now you need to work out <b>how</b> Moretti is orchestrating it.</p>
 
-<p>Part Two of the investigation leads you to the Prison Library, a place where we have noticed some unusual activity.</p>
+<p>Part II of the investigation leads you to the Prison Library, a place where we have noticed some unusual activity.</p>
 
 <p>We've got reason to believe Moretti's been using the library computer to email a contact outside these walls, someone feeding critical information to the inmates for their escape plan.</p>
 
-<p>In the library computer's inbox, we've found various draft emails — totally blank except for the recipient's address, <b>SilentPartner758@gmail.com</b>. It's suspicious, and I'm certain it's tied to their scheme. You need to take a closer look at this, and potentially make contact under the guise of Moretti.</p>
+<p>In the library computer's inbox, we've found various draft emails — totally blank except for the recipient's address, <b style={{ fontSize: '1.1em', letterSpacing: '0.05em' }}>eagle@silentpartner.vip</b>. It's suspicious, and I'm certain it's tied to their scheme. You need to take a closer look at this, and potentially make contact under the guise of Moretti.</p>
 
 <p>I trust that your mind will be sharp enough to piece everything together, and that you'll be able to infiltrate the inmates' communications before they can make their next move.</p>
 

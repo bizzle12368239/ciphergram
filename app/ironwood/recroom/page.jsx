@@ -246,7 +246,7 @@ export default function GuessCodewordPage() {
 
               <div className="help-text">
                 Need some help?<br /><br />
-                Reveal a hint below for the puzzle you're stuck on, one hint at a time.
+                Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
               </div>
             </div>
 
@@ -298,7 +298,7 @@ export default function GuessCodewordPage() {
             </div>
             <div className="success-details">
             <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
-            <p>Congratulations on successfully solving and linking all three parts of the escape investigation!</p>
+            <p>Congratulations on successfully solving and linking all III parts of the escape investigation!</p>
 
 <p>Thanks to your efforts, we now understand the where, how, and when of the escape, disrupting Moretti's carefully orchestrated plot. Without your intervention, the inmates might have succeeded and put the wider society at risk.</p>
 
