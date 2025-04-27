@@ -353,7 +353,7 @@ export default function GuessCodewordPage() {
               className="success-button"
               onClick={() => window.location.href = 'https://ciphergrampuzzles.com/#stayupdated'}
             >
-              You have have completed the game. Thank you for playing!
+              Thank you for playing! <br /><br />Click here to stay updated to be first to hear of new releases. 
             </button>
           </div>
         </div>
