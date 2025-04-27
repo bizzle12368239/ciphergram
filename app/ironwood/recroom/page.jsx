@@ -129,6 +129,14 @@ export default function GuessCodewordPage() {
   }, [])
 
   useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Video play error:', error)
+      })
+    }
+  }, [])
+
+  useEffect(() => {
     // Only try to play audio after video is hidden
     if (!showVideo && audioRef.current) {
       audioRef.current.volume = 0.3
@@ -166,12 +174,12 @@ export default function GuessCodewordPage() {
                 ref={videoRef}
                 key="intro-video"
                 className="intro-video"
-                autoPlay={true}
-                playsInline={true}
-                muted={true}
+                autoPlay
+                playsInline
+                muted
                 onEnded={handleVideoEnd}
               >
-                <source src="/rec room intro.mp4" type="video/mp4" />
+                <source src="/Rec room intro.mp4" type="video/mp4" />
               </video>
               <div className="skip-wrapper">
                 <button className="skip-intro" onClick={handleVideoEnd}>

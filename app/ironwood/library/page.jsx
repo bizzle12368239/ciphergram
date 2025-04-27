@@ -160,8 +160,8 @@ export default function GuessCodewordPage() {
                 key="intro-video"
                 className="intro-video"
                 autoPlay
-              
                 playsInline
+                muted
                 onEnded={handleVideoEnd}
               >
                 <source src="/The Library intro.mp4" type="video/mp4" />
