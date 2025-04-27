@@ -152,9 +152,9 @@ export default function GuessCodewordPage() {
             ref={videoRef}
             key="intro-video"
             className="intro-video"
-            autoPlay
-            playsInline
-            muted
+            autoPlay={true}
+            playsInline={true}
+            muted={true}
             onEnded={handleVideoEnd}
           >
             <source src="/rec room intro.mp4" type="video/mp4" />
