@@ -1,6 +1,7 @@
 import './globals.css';
+import Script from 'next/script';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/react'; // ✅ Import for analytics
+import { Analytics } from '@vercel/analytics/react'; // Import for analytics
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
@@ -56,6 +57,19 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Unica+One&display=swap"
           rel="stylesheet"
         />
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-FMDWC98XG5`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FMDWC98XG5');
+          `}
+        </Script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
@@ -67,7 +81,7 @@ export default function RootLayout({ children }) {
               alt="Ciphergram Logo" 
               className="footer-logo" 
             />
-            <p>&copy; {new Date().getFullYear()} Ciphergram®. Ciphergram is a Registered Trademark. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Ciphergram. Ciphergram is a Registered Trademark. All rights reserved.</p>
           </div>
         </footer>
 
