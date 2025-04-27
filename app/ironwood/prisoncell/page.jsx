@@ -71,6 +71,7 @@ export default function GuessCodewordPage() {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [isNavigating, setIsNavigating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [videoStarted, setVideoStarted] = useState(false)
   const inputRef = useRef(null)
   const ambianceRef = useRef(null)
   const tappingSoundRef = useRef(null)
@@ -196,10 +197,39 @@ export default function GuessCodewordPage() {
     <>
       {showVideo && (
         <div className={`video-overlay ${fadeOutVideo ? 'fade-out' : ''}`}>
+          {!videoStarted ? (
+            <div className="play-button-wrapper" style={{ 
+              position: 'absolute', 
+              top: '50%', 
+              left: '50%', 
+              transform: 'translate(-50%, -50%)',
+              zIndex: 2,
+              textAlign: 'center'
+            }}>
+              <h1 style={{
+                fontFamily: 'Courier New, Courier, monospace',
+                fontSize: '3rem',
+                color: 'white',
+                marginBottom: '2rem',
+                letterSpacing: '2px'
+              }}>BARREN PLAINS<br />POLICE DEPT <br /><br />SECURE PORTAL</h1>
+              <button 
+                onClick={() => {
+                  const video = document.querySelector('.intro-video');
+                  if (video) {
+                    video.play();
+                    setVideoStarted(true);
+                  }
+                }}
+                className="submit-button"
+              >
+                ENTER
+              </button>
+            </div>
+          ) : null}
           <video
             key="intro-video"
             className="intro-video"
-            autoPlay
             playsInline
             onEnded={handleVideoEnd}
           >
