@@ -81,7 +81,7 @@ export default function RootLayout({ children }) {
               alt="Ciphergram Logo" 
               className="footer-logo" 
             />
-            <p>&copy; {new Date().getFullYear()} Ciphergram. Ciphergram is a Registered Trademark. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Ciphergram®. Ciphergram is a Registered Trademark. All rights reserved.</p>
           </div>
         </footer>
 
