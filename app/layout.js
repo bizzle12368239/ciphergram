@@ -20,6 +20,14 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: 'Ciphergram - At-Home Escape Room Games',
   description: 'An immersive at-home escape room experience from Ciphergram Puzzles',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -53,6 +61,7 @@ export default function RootLayout({ children }) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <meta name="robots" content="noindex, nofollow" />
         <link
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Unica+One&display=swap"
           rel="stylesheet"
