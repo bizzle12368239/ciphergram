@@ -57,6 +57,8 @@ const HINT_GROUPS = [
 ]
 
 export default function GuessCodewordPage() {
+  const [showIntro, setShowIntro] = useState(true)
+  const [showContent, setShowContent] = useState(false)
   const [input, setInput] = useState('')
   const [feedback, setFeedback] = useState('')
   const [incorrectGuesses, setIncorrectGuesses] = useState(0)
@@ -139,163 +141,178 @@ export default function GuessCodewordPage() {
 
   return (
     <>
-      {showVideo && (
-        <div className={`video-overlay ${fadeOutVideo ? 'fade-out' : ''}`}>
-          <video
-            key="intro-video"
-            className="intro-video"
-            autoPlay
-          
-            playsInline
-            onEnded={handleVideoEnd}
-          >
-            <source src="/The Library intro.mp4" type="video/mp4" />
-          </video>
-          <div className="skip-wrapper">
-            <button className="skip-intro" onClick={handleVideoEnd}>
-              Skip Intro
-            </button>
-          </div>
+      {showIntro && (
+        <div className="intro-overlay">
+          <button className="begin-button" onClick={() => {
+            setShowIntro(false)
+            setShowContent(true)
+          }}>
+            ENTER THE LIBRARY
+          </button>
         </div>
       )}
-
-      {!showVideo && (
+      
+      {showContent && (
         <>
-          <audio
-            ref={audioRef}
-            src="/Library room background audio.mp3"
-            loop
-            preload="auto"
-            autoPlay
-            onError={(e) => console.error('Audio loading error:', e)}
-            onCanPlay={() => console.log('Audio is ready to play')}
-            onPlay={() => console.log('Audio play event triggered')}
-          />
-          <div className="guess-wrapper fade-in-content">
-            <div className="guess-container">
-              <img
-                className="logo"
-                src="/Escape From Ironwood Long Orange.png"
-                alt="Escape From Ironwood Logo"
+          {showVideo && (
+            <div className={`video-overlay ${fadeOutVideo ? 'fade-out' : ''}`}>
+              <video
+                key="intro-video"
+                className="intro-video"
+                autoPlay
+              
+                playsInline
+                onEnded={handleVideoEnd}
+              >
+                <source src="/The Library intro.mp4" type="video/mp4" />
+              </video>
+              <div className="skip-wrapper">
+                <button className="skip-intro" onClick={handleVideoEnd}>
+                  Skip Intro
+                </button>
+              </div>
+            </div>
+          )}
+
+          {!showVideo && (
+            <>
+              <audio
+                ref={audioRef}
+                src="/Library room background audio.mp3"
+                loop
+                preload="auto"
+                autoPlay
+                onError={(e) => console.error('Audio loading error:', e)}
+                onCanPlay={() => console.log('Audio is ready to play')}
+                onPlay={() => console.log('Audio play event triggered')}
               />
-              <h2 className="section-heading">Part II<br />- The Library -</h2>
-              <div className="page-subtitle">
-                Open the envelope marked <strong>"The Library"</strong> to get your instructions from Finch.
-                <br /><br /> When you think you have the Escape Method, type the answer below. 
-                <br /><br /> 
-                <div className="picker-label">Escape Method:</div>
+              <div className="guess-wrapper fade-in-content">
+                <div className="guess-container">
+                  <img
+                    className="logo"
+                    src="/Escape From Ironwood Long Orange.png"
+                    alt="Escape From Ironwood Logo"
+                  />
+                  <h2 className="section-heading">Part II<br />- The Library -</h2>
+                  <div className="page-subtitle">
+                    Open the envelope marked <strong>"The Library"</strong> to get your instructions from Finch.
+                    <br /><br /> When you think you have the Escape Method, type the answer below. 
+                    <br /><br /> 
+                    <div className="picker-label">Escape Method:</div>
 
-                <textarea
-                  ref={inputRef}
-                  className="input-box"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                      e.preventDefault()
-                      handleSubmit()
-                    }
-                  }}
-                  placeholder=". . ."
-                  style={{ fontSize: '1.3rem' }}
-                />
-                <br />  
-                <button
-                  className="submit-button"
-                  onClick={handleSubmit}
-                  disabled={loading || input.trim() === ''}
-                >
-                  {loading ? <span className="spinner"></span> : 'Submit'}
-                </button>
+                    <textarea
+                      ref={inputRef}
+                      className="input-box"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault()
+                          handleSubmit()
+                        }
+                      }}
+                      placeholder=". . ."
+                      style={{ fontSize: '1.3rem' }}
+                    />
+                    <br />  
+                    <button
+                      className="submit-button"
+                      onClick={handleSubmit}
+                      disabled={loading || input.trim() === ''}
+                    >
+                      {loading ? <span className="spinner"></span> : 'Submit'}
+                    </button>
 
-                {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
-                <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
-                <br />
+                    {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
+                    <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
+                    <br />
 
-                <div className="help-text">
-                  Need some help?<br /><br />
-                  Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
-                </div>
-              </div>
-
-              <div className="hint-group-title">{currentGroup.title}</div>
-              <div className="hint-nav-buttons">
-                <button 
-                  className="hint-nav-button"
-                  onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
-                  style={{ padding: '1rem 2rem' }}
-                >
-                  {'< Back'}
-                </button>
-                <button 
-                  className="hint-nav-button"
-                  onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
-                  style={{ padding: '1rem 2rem' }}
-                >
-                  {'Next >'}
-                </button>
-              </div>
-
-              <div className="hints">
-                {currentGroup.hints.map((hint, i) => (
-                  <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
-                    <div className="hint-card-header">
-                      <div className="hint-left">
-                        <span className="hint-icon">📌</span>
-                        <span className="hint-title">{hint.title}</span>
-                      </div>
-                      <span className="hint-toggle">
-                        {expandedHints[currentGroupIndex][i] ? '−' : '+'}
-                      </span>
-                    </div>
-                    <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
-                      <div className="hint-card-body">{hint.content}</div>
+                    <div className="help-text">
+                      Need some help?<br /><br />
+                      Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
                     </div>
                   </div>
-                ))}
+
+                  <div className="hint-group-title">{currentGroup.title}</div>
+                  <div className="hint-nav-buttons">
+                    <button 
+                      className="hint-nav-button"
+                      onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
+                      style={{ padding: '1rem 2rem' }}
+                    >
+                      {'< Back'}
+                    </button>
+                    <button 
+                      className="hint-nav-button"
+                      onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
+                      style={{ padding: '1rem 2rem' }}
+                    >
+                      {'Next >'}
+                    </button>
+                  </div>
+
+                  <div className="hints">
+                    {currentGroup.hints.map((hint, i) => (
+                      <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
+                        <div className="hint-card-header">
+                          <div className="hint-left">
+                            <span className="hint-icon">📌</span>
+                            <span className="hint-title">{hint.title}</span>
+                          </div>
+                          <span className="hint-toggle">
+                            {expandedHints[currentGroupIndex][i] ? '−' : '+'}
+                          </span>
+                        </div>
+                        <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
+                          <div className="hint-card-body">{hint.content}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+
+          )}
+
+          {showSuccess && (
+            <div className="success-overlay">
+              <div className="success-content">
+                <div className="success-message">
+                  {feedback}
+                </div>
+                <div className="success-details">
+                  <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
+                  <p>Congratulations once again on successfully completing Part II of your investigation!</p>
+
+                  <p>Your efforts to crack the code in the library have brought us much closer to understanding the full extent of the escape plot.</p>
+
+                  <p>But now I have urgent news regarding the final stage of the investigation. The atmosphere inside Ironwood is becoming increasingly tense, and the guards have intercepted a series of strange developments that suggest the inmates are ramping up their plans.</p>
+
+                  <p>The final stage of your investigation takes you to the Recreation Room, where Gavin Moretti is spending an increased amount of time playing cards with various inmates.</p>
+
+                  <p>What might appear as idle pastime could be a cover for something far more calculated—perhaps a method of passing messages or finalising details right under our noses.</p>
+
+                  <p>You've already figured out the where and how the inmates are planning their escape.</p>
+
+                  <p>Your mission now is to solve these new clues to work out the <b>when</b>. The pieces are starting to fall into place, but time is running out.</p>
+
+                  <p>I trust that you will be able to make sense of these seemingly unrelated events, help us get one step closer to foiling this plot, and avoid risking the safety of our wider community.</p>
+                  <p>Yours in continued urgency,<br /><br />
+                    Warden Douglas Finch<br />
+                    Ironwood Correctional Facility
+                  </p>
+                  <img src="/Finch Signature.png" alt="Warden Finch's Signature" style={{ maxWidth: '200px', marginTop: '1rem' }} />
+                </div>
+                <Link href="/ironwood/recroom">
+                  <button className="success-button">
+                    Continue to the Rec Room
+                  </button>
+                </Link>
               </div>
             </div>
-          </div>
+          )}
         </>
-      )}
-
-      {showSuccess && (
-        <div className="success-overlay">
-          <div className="success-content">
-            <div className="success-message">
-              {feedback}
-            </div>
-            <div className="success-details">
-            <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
-            <p>Congratulations once again on successfully completing Part II of your investigation!</p>
-
-<p>Your efforts to crack the code in the library have brought us much closer to understanding the full extent of the escape plot.</p>
-
-<p>But now I have urgent news regarding the final stage of the investigation. The atmosphere inside Ironwood is becoming increasingly tense, and the guards have intercepted a series of strange developments that suggest the inmates are ramping up their plans.</p>
-
-<p>The final stage of your investigation takes you to the Recreation Room, where Gavin Moretti is spending an increased amount of time playing cards with various inmates.</p>
-
-<p>What might appear as idle pastime could be a cover for something far more calculated—perhaps a method of passing messages or finalising details right under our noses.</p>
-
-<p>You've already figured out the where and how the inmates are planning their escape.</p>
-
-<p>Your mission now is to solve these new clues to work out the <b>when</b>. The pieces are starting to fall into place, but time is running out.</p>
-
-<p>I trust that you will be able to make sense of these seemingly unrelated events, help us get one step closer to foiling this plot, and avoid risking the safety of our wider community.</p>
- <p>Yours in continued urgency,<br />  <br />
-              Warden Douglas Finch<br />
-        
-            Ironwood Correctional Facility</p>
-              <img src="/Finch Signature.png" alt="Warden Finch's Signature" style={{ maxWidth: '200px', marginTop: '1rem' }} />
-          
-            </div>
-            <Link href="/ironwood/recroom">
-  <button className="success-button">
-    Continue to the Rec Room
-  </button>
-</Link>
-          </div>
-        </div>
       )}
     </>
   )

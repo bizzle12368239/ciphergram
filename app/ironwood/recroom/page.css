@@ -379,7 +379,8 @@ html, body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 600px;
+  position: relative;
+  padding: 0.5rem 0;
   margin: 1.5rem 0;
   gap: 1rem;
 }
@@ -716,4 +717,33 @@ html, body {
 .date-time-picker span {
   font-weight: bold;
   padding: 0.7rem; /* Add padding on both sides of the colon */
+}
+
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.begin-button {
+  background-color: #e3b74a;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Unica One', sans-serif;
+}
+
+.begin-button:hover {
+  background-color: #ffd700;
 }

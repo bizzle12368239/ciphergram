@@ -70,6 +70,7 @@ export default function GuessCodewordPage() {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [isNavigating, setIsNavigating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [showIntro, setShowIntro] = useState(true)
   const inputRef = useRef(null)
   const audioRef = useRef(null)
   const videoRef = useRef(null)
@@ -146,178 +147,193 @@ export default function GuessCodewordPage() {
 
   return (
     <>
-      {showVideo && (
-        <div className={`video-overlay ${fadeOutVideo ? 'fade-out' : ''}`}>
-          <video
-            ref={videoRef}
-            key="intro-video"
-            className="intro-video"
-            autoPlay={true}
-            playsInline={true}
-            muted={true}
-            onEnded={handleVideoEnd}
-          >
-            <source src="/rec room intro.mp4" type="video/mp4" />
-          </video>
-          <div className="skip-wrapper">
-            <button className="skip-intro" onClick={handleVideoEnd}>
-              Skip Intro
-            </button>
-          </div>
+      {showIntro && (
+        <div className="intro-overlay">
+          <button className="begin-button" onClick={() => {
+            setShowIntro(false)
+            setShowContent(true)
+          }}>
+            ENTER THE REC ROOM
+          </button>
         </div>
       )}
+      
+      {showContent && (
+        <>
+          {showVideo && (
+            <div className={`video-overlay ${fadeOutVideo ? 'fade-out' : ''}`}>
+              <video
+                ref={videoRef}
+                key="intro-video"
+                className="intro-video"
+                autoPlay={true}
+                playsInline={true}
+                muted={true}
+                onEnded={handleVideoEnd}
+              >
+                <source src="/rec room intro.mp4" type="video/mp4" />
+              </video>
+              <div className="skip-wrapper">
+                <button className="skip-intro" onClick={handleVideoEnd}>
+                  Skip Intro
+                </button>
+              </div>
+            </div>
+          )}
 
-      {!showVideo && (
-        <div className={`guess-wrapper ${showContent ? 'fade-in-content' : ''}`} style={{ backgroundColor: showContent ? 'transparent' : 'black' }}>
-          <audio
-            ref={audioRef}
-            src="/rec room background audio.mp3"
-            loop
-            preload="auto"
-            onError={(e) => console.error('Audio loading error:', e)}
-            onCanPlay={() => console.log('Audio is ready to play')}
-            onPlay={() => console.log('Audio play event triggered')}
-          />
-          <div className="guess-container">
-            <img
-              className="logo"
-              src="/Escape From Ironwood Long Orange.png"
-              alt="Escape From Ironwood Logo"
-            />
-            <h2 className="section-heading">Part III<br />- The Rec Room -</h2>
-            <div className="page-subtitle">
-              Open the envelope marked <strong>"The Rec Room "</strong> to get your instructions from Finch.
-              <br /><br />
-             When you think you have the Escape Date and Time, enter your answer below.           <br /><br />
+          {!showVideo && (
+            <div className={`guess-wrapper ${showContent ? 'fade-in-content' : ''}`} style={{ backgroundColor: showContent ? 'transparent' : 'black' }}>
+              <audio
+                ref={audioRef}
+                src="/rec room background audio.mp3"
+                loop
+                preload="auto"
+                onError={(e) => console.error('Audio loading error:', e)}
+                onCanPlay={() => console.log('Audio is ready to play')}
+                onPlay={() => console.log('Audio play event triggered')}
+              />
+              <div className="guess-container">
+                <img
+                  className="logo"
+                  src="/Escape From Ironwood Long Orange.png"
+                  alt="Escape From Ironwood Logo"
+                />
+                <h2 className="section-heading">Part III<br />- The Rec Room -</h2>
+                <div className="page-subtitle">
+                  Open the envelope marked <strong>"The Rec Room "</strong> to get your instructions from Finch.
+                  <br /><br />
+                 When you think you have the Escape Date and Time, enter your answer below.           <br /><br />
  
 
-              <div className="date-time-picker">
-                <div className="picker-group">
-                  <div className="picker-label">Date:</div>
-                  <select
-                    value={input.split(' ')[0]?.split('/')[0] || '0'}
-                    onChange={(e) => {
-                      const parts = input.split(' ')
-                      const date = parts[0]?.split('/') || ['0', '0']
-                      date[0] = e.target.value
-                      setInput(`${date.join('/')} ${parts[1] || '00:00'}`)
-                    }}
-                  >
-                    {Array.from({ length: 32 }, (_, i) => (
-                      <option key={i} value={i.toString().padStart(2, '0')}>
-                        {i.toString().padStart(2, '0')}
-                      </option>
-                    ))}
-                  </select>
-                  <span>/</span>
-                  <select
-                    value={input.split(' ')[0]?.split('/')[1] || '0'}
-                    onChange={(e) => {
-                      const parts = input.split(' ')
-                      const date = parts[0]?.split('/') || ['0', '0']
-                      date[1] = e.target.value
-                      setInput(`${date.join('/')} ${parts[1] || '00:00'}`)
-                    }}
-                  >
-                    {Array.from({ length: 13 }, (_, i) => (
-                      <option key={i} value={i.toString().padStart(2, '0')}>
-                        {i.toString().padStart(2, '0')}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="picker-group">
-                  <div className="picker-label">Time:</div>
-                  <select
-                    value={input.split(' ')[1]?.split(':')[0] || '00'}
-                    onChange={(e) => {
-                      const parts = input.split(' ')
-                      const time = parts[1]?.split(':') || ['00', '00']
-                      time[0] = e.target.value
-                      setInput(`${parts[0] || '00/00'} ${time.join(':')}`)
-                    }}
-                  >
-                    {Array.from({ length: 25 }, (_, i) => (
-                      <option key={i} value={i.toString().padStart(2, '0')}>
-                        {i.toString().padStart(2, '0')}
-                      </option>
-                    ))}
-                  </select>
-                  <span>   : </span>
-                  <select
-                    value={input.split(' ')[1]?.split(':')[1] || '00'}
-                    onChange={(e) => {
-                      const parts = input.split(' ')
-                      const time = parts[1]?.split(':') || ['00', '00']
-                      time[1] = e.target.value
-                      setInput(`${parts[0] || '00/00'} ${time.join(':')}`)
-                    }}
-                  >
-                    {Array.from({ length: 61 }, (_, i) => (
-                      <option key={i} value={i.toString().padStart(2, '0')}>
-                        {i.toString().padStart(2, '0')}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <br />
-              <button
-                className="submit-button"
-                onClick={handleSubmit}
-                disabled={loading || input.trim() === ''}
-              >
-                {loading ? <span className="spinner"></span> : 'Submit'}
-              </button>
-
-              {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
-              <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
-              <br />
-
-              <div className="help-text">
-                Need some help?<br /><br />
-                Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
-              </div>
-            </div>
-
-            <div className="hint-group-title">{currentGroup.title}</div>
-            <div className="hint-nav-buttons">
-              <button 
-                className="hint-nav-button"
-                onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
-                style={{ padding: '1rem 2rem' }}
-              >
-                {'< Back'}
-              </button>
-              <button 
-                className="hint-nav-button"
-                onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
-                style={{ padding: '1rem 2rem' }}
-              >
-                {'Next >'}
-              </button>
-            </div>
-
-            <div className="hints">
-              {currentGroup.hints.map((hint, i) => (
-                <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
-                  <div className="hint-card-header">
-                    <div className="hint-left">
-                      <span className="hint-icon">📌</span>
-                      <span className="hint-title">{hint.title}</span>
+                  <div className="date-time-picker">
+                    <div className="picker-group">
+                      <div className="picker-label">Date:</div>
+                      <select
+                        value={input.split(' ')[0]?.split('/')[0] || '0'}
+                        onChange={(e) => {
+                          const parts = input.split(' ')
+                          const date = parts[0]?.split('/') || ['0', '0']
+                          date[0] = e.target.value
+                          setInput(`${date.join('/')} ${parts[1] || '00:00'}`)
+                        }}
+                      >
+                        {Array.from({ length: 32 }, (_, i) => (
+                          <option key={i} value={i.toString().padStart(2, '0')}>
+                            {i.toString().padStart(2, '0')}
+                          </option>
+                        ))}
+                      </select>
+                      <span>/</span>
+                      <select
+                        value={input.split(' ')[0]?.split('/')[1] || '0'}
+                        onChange={(e) => {
+                          const parts = input.split(' ')
+                          const date = parts[0]?.split('/') || ['0', '0']
+                          date[1] = e.target.value
+                          setInput(`${date.join('/')} ${parts[1] || '00:00'}`)
+                        }}
+                      >
+                        {Array.from({ length: 13 }, (_, i) => (
+                          <option key={i} value={i.toString().padStart(2, '0')}>
+                            {i.toString().padStart(2, '0')}
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                    <span className="hint-toggle">
-                      {expandedHints[currentGroupIndex][i] ? '−' : '+'}
-                    </span>
+                    <div className="picker-group">
+                      <div className="picker-label">Time:</div>
+                      <select
+                        value={input.split(' ')[1]?.split(':')[0] || '00'}
+                        onChange={(e) => {
+                          const parts = input.split(' ')
+                          const time = parts[1]?.split(':') || ['00', '00']
+                          time[0] = e.target.value
+                          setInput(`${parts[0] || '00/00'} ${time.join(':')}`)
+                        }}
+                      >
+                        {Array.from({ length: 25 }, (_, i) => (
+                          <option key={i} value={i.toString().padStart(2, '0')}>
+                            {i.toString().padStart(2, '0')}
+                          </option>
+                        ))}
+                      </select>
+                      <span>   : </span>
+                      <select
+                        value={input.split(' ')[1]?.split(':')[1] || '00'}
+                        onChange={(e) => {
+                          const parts = input.split(' ')
+                          const time = parts[1]?.split(':') || ['00', '00']
+                          time[1] = e.target.value
+                          setInput(`${parts[0] || '00/00'} ${time.join(':')}`)
+                        }}
+                      >
+                        {Array.from({ length: 61 }, (_, i) => (
+                          <option key={i} value={i.toString().padStart(2, '0')}>
+                            {i.toString().padStart(2, '0')}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                  <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
-                    <div className="hint-card-body">{hint.content}</div>
+                  <br />
+                  <button
+                    className="submit-button"
+                    onClick={handleSubmit}
+                    disabled={loading || input.trim() === ''}
+                  >
+                    {loading ? <span className="spinner"></span> : 'Submit'}
+                  </button>
+
+                  {feedback && !showSuccess && <div className="feedback">{feedback}</div>}
+                  <div className="guess-counter">Incorrect Guesses: {incorrectGuesses}</div>
+                  <br />
+
+                  <div className="help-text">
+                    Need some help?<br /><br />
+                    Select the puzzle you're stuck on to get a hint. If you're really stuck, check the correct answer in the last hint.
                   </div>
                 </div>
-              ))}
+
+                <div className="hint-group-title">{currentGroup.title}</div>
+                <div className="hint-nav-buttons">
+                  <button 
+                    className="hint-nav-button"
+                    onClick={() => setCurrentGroupIndexAndResetHints(currentGroupIndex > 0 ? currentGroupIndex - 1 : HINT_GROUPS.length - 1)}
+                    style={{ padding: '1rem 2rem' }}
+                  >
+                    {'< Back'}
+                  </button>
+                  <button 
+                    className="hint-nav-button"
+                    onClick={() => setCurrentGroupIndexAndResetHints((currentGroupIndex + 1) % HINT_GROUPS.length)}
+                    style={{ padding: '1rem 2rem' }}
+                  >
+                    {'Next >'}
+                  </button>
+                </div>
+
+                <div className="hints">
+                  {currentGroup.hints.map((hint, i) => (
+                    <div key={i} className={`hint-card ${expandedHints[currentGroupIndex][i] ? 'open' : ''}`} onClick={() => toggleHint(i)}>
+                      <div className="hint-card-header">
+                        <div className="hint-left">
+                          <span className="hint-icon">📌</span>
+                          <span className="hint-title">{hint.title}</span>
+                        </div>
+                        <span className="hint-toggle">
+                          {expandedHints[currentGroupIndex][i] ? '−' : '+'}
+                        </span>
+                      </div>
+                      <div className={`hint-card-body-wrapper ${expandedHints[currentGroupIndex][i] ? 'open' : ''} ${isNavigating ? 'no-transition' : ''}`}>
+                        <div className="hint-card-body">{hint.content}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )}
+        </>
       )}
 
       {showSuccess && (
