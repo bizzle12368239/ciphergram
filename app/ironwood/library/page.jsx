@@ -7,51 +7,59 @@ import Head from 'next/head'
 
 const HINT_GROUPS = [
   {
-    title: 'Photo on the Wall',
+    title: 'The Library Inventory Card',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Upon the wall, a spectre stands, his wrist a canvas for the seer\'s mark—where flesh meets shade, digits whisper through the veil, a silent tally bared to those who dare to gaze.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Examine the photo of The Ghost closely, especially his wrist, where a tattoo shows the number you\'re looking for.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'If you look closely at the photo of the Ghost and the tattoo on his wrist (which was mentioned in his Psychologic Profile) you\'ll notice the number 7 disguised in the tattoo of a butterfly.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Pluck the tail of each decimal\'s dance, find its echo in the title\'s letters, and weave those fragments into a hidden truth. The truth will unlock what\'s silently waiting to respond.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Focus on the classification numbers\' last digits and count that many letters into each book\'s title to reveal a scrambled answer, the codeword to be sent via email to the accomplice.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Take the last digit of each classification number and count that many letters into the corresponding book title, revealing letters, which forms an anagram of the word SHADOW. The codeword to be sent in your email subject line. Can\'t send an email? By sending an email to Moretti\'s accomplice with the code word \'SHADOW\' in the subject line, the accomplice replies with the number you need: SIXTEEN.' }
     ]
   },
   {
-    title: 'Audio Recording',
+    title: 'The Maze',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'In the echo of metal struck, a rhythm hides—swift strikes and lingering beats weave a silent tongue; chase the cadence through the bars, and from the void of sound, a code shall sing its secret.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Listen to the tapping on the bars—it\'s Morse code, so break it into low and high sounds to figure out the message.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Using the morse code decoder provided in the introductory pack, you needed to identify the high and low sounds revealed in the tapping sound on the prison cell bars. This revealed the following pattern: xxx which when decoded gives the word STALLION which relates to the horse icon key which = xxxx' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Retreat a pace, and what flits unseen may perch upon the thread of fate.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Trace the maze to its end and note the animal that appears. Finch has provided a guide on the noted tattoos of Moretti and his known associates that might be helpful here.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Solving the maze forms the image of an eagle. Matching it to the noted tattoos of Moretti\'s associates gives the number 5, the solution for this puzzle.' }
     ]
   },
   {
-    title: '6 Icon Picture Key',
+    title: 'The Crossword Puzzle',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'From folded wing, inked shade, ciphered hall, ghostly mark, and rhythmic clang, a pattern of figures emerges—bind them as the cartographer\'s key, and upon the prison\'s chart, their union shall unveil the hidden cell.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Take the answers from each of the six puzzles you\'ve solved—numbers whispered through folded wings, torn ink, ciphered halls, ghostly marks, rhythmic clangs, and scattered shards. Do these figures align like points on a lattice, a grid of intent veiled as mere digits? Might they pair with a chart already in your hands, tracing a path unseen?' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Take the answers from the previous puzzles you should have 6 numbers. These are grid co-ordinates to be used with the blueprint of the prison already provided. The answer is: 345,967 which on the map reveals the Laundry Room.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'First thing to do is...to complete the crossword!' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Fill in the crossword, then scan the grid for number-related words that might be tucked away.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Once completed, the crossword hides the word TWENTY FIVE across its grid, giving you the answer 25.' }
     ]
   },
   {
-    title: 'Torn Letter',
+    title: 'The Pencil Portrait by Moretti',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Gather the shards of whispered words, where hue betrays the quill\'s intent; in the mosaic of shadow and light, a digit dances—unseen up close, yet bold when the eye retreats.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Piece the torn letter back together like a puzzle, then notice any differences in the ink colour to spot the hidden number.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Once you\'ve pieced the torn pieces of letter together, if you step back you\'ll notice some of the text is in a different shade of ink. This reveals the number 3.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Moretti\'s fresh drawing on the shelf stands out, its lines feeling deliberate.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Look closely at the drawing for any hidden but obscure repeated shapes or patterns that might form a word.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The word "three" is subtly woven into the drawing multiple times, revealing 3 as the answer.' }
     ]
   },
   {
-    title: 'Postcard',
+    title: 'The Cryptic Symbols on Inventory Card',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Where the palace boasts its rank of seven, a cipher guards the tongue of ink—beyond each silent void, twist the trailing runes by the wonder\'s count, and truth shall rise from the postcard\'s veil.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Look at the word "seventh" on the front of the postcard, then check the message on the back—shift the letters after each blank space to find the hidden answer.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'This is a caesar cipher using a shift of 7 as revealed on the front of the postcard. You then take each of the letters revealed after each deliberate space: L (glitz), B (remember) ,Q (enquire), and apply the shift of 7 (simply counting along 7 letters) so L = S, Q = X, B = I, revealing the answer of SIX.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Check your decoding tools from Finch, one of those might come in handy here.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'The symbols resemble a pigpen cipher—match each one to a letter using the codebreaking tool with similar shapes provided by Finch to decode the message.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Decoding the pigpen cipher symbols reveals the word TWELVE, corresponding to the number 12, your answer for this puzzle.' }
     ]
   },
   {
-    title: 'Paper with Lines',
+    title: 'The Clock Icon',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Seek the cipher where the wind meets its wings; in the shadow of the crease, a secret sings—bend the sheet as the sky demands, and the figure shall rise from folded hands.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Start by folding the paper into a basic paper airplane shape with the point at the top, and look closely at the final shape for any visible numbers.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'If you fold this paper into a paper airplane, the marking on the plane join together to reveal the answer 4.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'In the captured scene, a timekeeper looms - its frozen hands might hold more than just the hour.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Note the time shown on the clock in the room\'s photo - the time it\'s showing is the answer you may need.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The clock in the library photo shows 7pm, making 7 the answer for this clue.' }
+    ]
+  },
+  {
+    title: 'The 7 Icons',
+    hints: [
+      { title: 'Hint 1 - I need a pointer...', content: 'Once you\'ve completed all the puzzles, you now have 7 numbers. Each puzzle should relate to one of the images on the icon card. Finch has asked you to find out how the inmates are planning their escape. Are there any clues or tools you\'ve not utilised yet in the Library?' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'When you\'ve completed each puzzle you now have 7 numbers. There\'s a scrap of paper that says 12 = A, this might be what you need to decode your 7 numbers.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Each of the numbers from the puzzles you’ve solved correspond to a letter. So the number 12 = A, number 13 = B etc. If you apply these to your numbers, the word ‘AIR VENT’ is revealed, the means of escape in the laundry room!' }
     ]
   }
 ]
