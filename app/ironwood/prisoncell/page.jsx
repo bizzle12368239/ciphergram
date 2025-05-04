@@ -364,7 +364,7 @@ export default function GuessCodewordPage() {
 
 <p>I'm writing to brief you on the next stage of your investigation—one that will bring you closer to uncovering the full scope of the escape plot. You've figured out where their escape is planned; now you need to work out <b>how</b> Moretti is orchestrating it.</p>
 
-<p>Part II of the investigation leads you to the Prison Library, a place where we have noticed some unusual activity.</p>
+<p>Part II of the investigation leads you to the Prison's Old Library, a place where we have noticed some unusual activity.</p>
 
 <p>We've got reason to believe Moretti's been using the library computer to email a contact outside these walls, someone feeding critical information to the inmates for their escape plan.</p>
 

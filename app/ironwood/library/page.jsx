@@ -150,7 +150,7 @@ export default function GuessCodewordPage() {
             setShowIntro(false)
             setShowContent(true)
           }}>
-            ENTER THE LIBRARY
+            ENTER THE OLD LIBRARY
           </button>
         </div>
       )}
@@ -196,9 +196,9 @@ export default function GuessCodewordPage() {
                     src="/Escape From Ironwood Long Orange.png"
                     alt="Escape From Ironwood Logo"
                   />
-                  <h2 className="section-heading">Part II<br />- The Library -</h2>
+                  <h2 className="section-heading">Part II<br />- The Old Library -</h2>
                   <div className="page-subtitle">
-                    Open the envelope marked <strong>"The Library"</strong> to get your instructions from Finch.
+                    Open the envelope marked <strong>"The Old Library"</strong> to get your instructions from Finch.
                     <br /><br /> When you think you have the Escape Method, type the answer below. 
                     <br /><br /> 
                     <div className="picker-label">Escape Method:</div>
@@ -288,7 +288,7 @@ export default function GuessCodewordPage() {
                   <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
                   <p>Congratulations once again on successfully completing Part II of your investigation!</p>
 
-                  <p>Your efforts to crack the code in the library have brought us much closer to understanding the full extent of the escape plot.</p>
+                  <p>Your efforts to crack the code in the Old Library have brought us much closer to understanding the full extent of the escape plot.</p>
 
                   <p>But now I have urgent news regarding the final stage of the investigation. The atmosphere inside Ironwood is becoming increasingly tense, and the guards have intercepted a series of strange developments that suggest the inmates are ramping up their plans.</p>
 
