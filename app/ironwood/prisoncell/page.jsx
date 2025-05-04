@@ -7,51 +7,51 @@ import Head from 'next/head'
 
 const HINT_GROUPS = [
   {
-    title: 'Photo on the Wall',
+    title: 'The Photo of Moretti & Accomplices',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Upon the wall, a spectre stands, his wrist a canvas for the seer\'s mark—where flesh meets shade, digits whisper through the veil, a silent tally bared to those who dare to gaze.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Examine the photo of The Ghost closely, especially his wrist, where a tattoo shows the number you\'re looking for.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'If you look closely at the photo of the Ghost and the tattoo on his wrist (which was mentioned in his Psychologic Profile) you\'ll notice the number 7 disguised in the tattoo of a butterfly.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Look back at Moretti’s prisoner profile again, wasn’t something mentioned about a strange symbol?' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Study Moretti in the center of the photo, particularly his hand, where a tattoo might reveal something significant. Finch has provided a guide on the noted tattoos of Moretti and his known associates that might be helpful here.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'In the photo of Moretti, a tattoo on his hand, noted in his profile, cleverly hides the number 7 within a butterfly design, giving you the answer you’re looking for. ' }
     ]
   },
   {
-    title: 'Audio Recording',
+    title: 'The Audio Recording of the Prison',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'In the echo of metal struck, a rhythm hides—swift strikes and lingering beats weave a silent tongue; chase the cadence through the bars, and from the void of sound, a code shall sing its secret.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Listen to the tapping on the bars—it\'s Morse code, so break it into low and high sounds to figure out the message.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Using the morse code decoder provided in the introductory pack, you needed to identify the high and low sounds revealed in the tapping sound on the prison cell bars. This revealed the following pattern: xxx which when decoded gives the word STALLION which relates to the horse icon key which = xxxx' }
+      { title: 'Hint 1 - I need a pointer...', content: 'The guards’ recording of strange repetitive and rhythmic tapping noises, feels like it holds patterns worth exploring.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Listen to the tapping sounds and break them into high and low sounds, then use the correct code-breaking tool provided by Finch to translate the sequence into a codeword which may link to what you need. Finch has provided a guide on the noted tattoos of Moretti and his known associates that might be helpful here.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The audio’s tapping is in morse code, and instead of long and short taps, the prisoners are using high and low sounding taps. Using the decoder from your code-breaking toolkit, separate each pattern in its high and low taps using the chart. Each individual pattern reveals a letter, and all the letters form the word STALLION, which corresponds to the horse icon key in your toolkit, valued at 8, the answer you are looking for. ' }
     ]
   },
   {
-    title: '6 Icon Picture Key',
+    title: 'The 6 Icons',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'From folded wing, inked shade, ciphered hall, ghostly mark, and rhythmic clang, a pattern of figures emerges—bind them as the cartographer\'s key, and upon the prison\'s chart, their union shall unveil the hidden cell.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Take the answers from each of the six puzzles you\'ve solved—numbers whispered through folded wings, torn ink, ciphered halls, ghostly marks, rhythmic clangs, and scattered shards. Do these figures align like points on a lattice, a grid of intent veiled as mere digits? Might they pair with a chart already in your hands, tracing a path unseen?' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Take the answers from the previous puzzles you should have 6 numbers. These are grid co-ordinates to be used with the blueprint of the prison already provided. The answer is: 345,967 which on the map reveals the Laundry Room.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'A detailed layout among your belongings draws your attention, its criss-crossed lines waiting for the right markers to reveal their purpose.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Take the answers from each of the six puzzles you’ve solved in this room, each of these should relate to one of the 6 images on the icon card - might they pair with a blueprint already in your hands, tracing a path unseen?' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The six numbers from the puzzle are coordinates. The order of the numbers is revealed by the order of the puzzles on the icon card. Plotting 348, 967 on the prison blueprint reveals the Laundry Room, the escape’s starting point.' }
     ]
   },
   {
-    title: 'Torn Letter',
+    title: 'The Torn Letter',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Gather the shards of whispered words, where hue betrays the quill\'s intent; in the mosaic of shadow and light, a digit dances—unseen up close, yet bold when the eye retreats.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Piece the torn letter back together like a puzzle, then notice any differences in the ink colour to spot the hidden number.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Once you\'ve pieced the torn pieces of letter together, if you step back you\'ll notice some of the text is in a different shade of ink. This reveals the number 3.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Gather the torn pieces and fit them together like a puzzle, does anything stand out?' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Standing back might help, look at the whole letter pieced together. Notice any differences in the ink colour across the page?' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Once the letter is reassembled, step back to see some words in a lighter ink shade, forming the number 3 across the page, the solution to this puzzle.' }
     ]
   },
   {
-    title: 'Postcard',
+    title: 'The Caesar’s Palace Postcard',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Where the palace boasts its rank of seven, a cipher guards the tongue of ink—beyond each silent void, twist the trailing runes by the wonder\'s count, and truth shall rise from the postcard\'s veil.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Look at the word "seventh" on the front of the postcard, then check the message on the back—shift the letters after each blank space to find the hidden answer.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'This is a caesar cipher using a shift of 7 as revealed on the front of the postcard. You then take each of the letters revealed after each deliberate space: L (glitz), B (remember) ,Q (enquire), and apply the shift of 7 (simply counting along 7 letters) so L = S, Q = X, B = I, revealing the answer of SIX.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Where the palace boasts its rank of 7, a cipher guards the tongue of ink - beyond each silent void, twist the trailing runes by the wonder’s count, and truth shall rise from the postcard’s veil.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Check the number on the postcard’s front and use it to shift the letters after the unusual gaps in the message on the back to uncover a hidden word.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The postcard’s front refers to the number 7, indicating a Caesar Cipher with a shift of 7. On the back, there are three gaps in the words “glitz” (before the letter L) , “remember” (before the letter B), and “enquire” (before the letter Q). Taking those letters, and shifting them in the alphabet by 7 gives you the letters S, I, and X, - the number 6, your answer to this puzzle.' }
     ]
   },
   {
-    title: 'Paper with Lines',
+    title: 'The Paper with Markings',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Seek the cipher where the wind meets its wings; in the shadow of the crease, a secret sings—bend the sheet as the sky demands, and the figure shall rise from folded hands.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Start by folding the paper into a basic paper airplane shape with the point at the top, and look closely at the final shape for any visible numbers.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'If you fold this paper into a paper airplane, the marking on the plane join together to reveal the answer 4.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Where the wind meets its wings; in the shadow of the crease, a secret sings - bend the sheet as the sky demands, and the figure shall rise from folded hands.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'The inmates are folding paper 3 times, then in half to make a paper airplane. What does the final shape reveal?' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'You need to fold the paper into a paper airplane in the format the inmates are using. Start by folding the two corners in to meet at the middle. Repeat this for a total of three times, before folding the entire plane in half. Open up the wings as if ready to throw the plane - the number 4 is revealed on top in plain sight, your answer to this clue.' }
     ]
   }
 ]
