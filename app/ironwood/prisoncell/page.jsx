@@ -384,7 +384,7 @@ export default function GuessCodewordPage() {
 
 <Link href="/ironwood/library">
   <button className="success-button">
-    Continue to the Library
+    Continue to the Old Library
   </button>
 </Link>
 
