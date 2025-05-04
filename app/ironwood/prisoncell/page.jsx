@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './page.css'
 import Link from 'next/link'
-import Head from 'next/head'
 
 const HINT_GROUPS = [
   {
@@ -55,7 +54,6 @@ const HINT_GROUPS = [
     ]
   }
 ]
-
 
 export default function GuessCodewordPage() {
   const [input, setInput] = useState('')
@@ -124,8 +122,15 @@ export default function GuessCodewordPage() {
   const currentGroup = HINT_GROUPS[currentGroupIndex]
 
   useEffect(() => {
-    document.title = 'Escape From Ironwood - The Prison Cell'
-  }, [])
+    return () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
+      if (fadeIntervalRef.current) {
+        clearInterval(fadeIntervalRef.current);
+      }
+    };
+  }, []);
 
   const fadeInAmbiance = () => {
     if (!ambianceRef.current || !playAmbiance) return;
@@ -181,17 +186,6 @@ export default function GuessCodewordPage() {
     }
     fadeInAmbiance();
   };
-
-  useEffect(() => {
-    return () => {
-      if (resumeTimeoutRef.current) {
-        clearTimeout(resumeTimeoutRef.current);
-      }
-      if (fadeIntervalRef.current) {
-        clearInterval(fadeIntervalRef.current);
-      }
-    };
-  }, []);
 
   return (
     <>
