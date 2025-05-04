@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './page.css'
 import Link from 'next/link'
-import Head from 'next/head'
 
 const HINT_GROUPS = [
   {
@@ -142,10 +141,6 @@ export default function GuessCodewordPage() {
   }
 
   const currentGroup = HINT_GROUPS[currentGroupIndex]
-
-  useEffect(() => {
-    document.title = 'Escape From Ironwood - The Library'
-  }, [])
 
   return (
     <>
