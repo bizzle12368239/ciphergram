@@ -7,53 +7,45 @@ import Head from 'next/head'
 
 const HINT_GROUPS = [
   {
-    title: 'Photo on the Wall',
+    title: 'The Playing Cards and Riddle',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Upon the wall, a spectre stands, his wrist a canvas for the seer\'s mark—where flesh meets shade, digits whisper through the veil, a silent tally bared to those who dare to gaze.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Examine the photo of The Ghost closely, especially his wrist, where a tattoo shows the number you\'re looking for.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'If you look closely at the photo of the Ghost and the tattoo on his wrist (which was mentioned in his Psychologic Profile) you\'ll notice the number 7 disguised in the tattoo of a butterfly.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Among the fallen suits of jest, the inked voice speaks in veiled request.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Read the poem carefully to identify which card details - like suits or numbers - it highlights. Towards the end it suggests what to do with them…' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The poem guides you to select cards (Queen, 4, 5, Ace, 5) whose numbers summed (10 + 4 + 5 + 1 + 5 = 25) spell out the escape day, the 25th. The room introduction card points you to add-up the cards.' }
     ]
   },
   {
-    title: 'Audio Recording',
+    title: 'The Sudoku Puzzle',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'In the echo of metal struck, a rhythm hides—swift strikes and lingering beats weave a silent tongue; chase the cadence through the bars, and from the void of sound, a code shall sing its secret.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Listen to the tapping on the bars—it\'s Morse code, so break it into low and high sounds to figure out the message.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Using the morse code decoder provided in the introductory pack, you needed to identify the high and low sounds revealed in the tapping sound on the prison cell bars. This revealed the following pattern: xxx which when decoded gives the word STALLION which relates to the horse icon key which = xxxx' }
+      { title: 'Hint 1 - I need a pointer...', content: 'There\'s something about the adjusted grid - it hints at more than just idle play. Might be worth seeing through.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Solve the sudoku puzzle in the magazine, you need to identify the numbers in the bolded squares.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Completing the sudoku puzzle reveals the numbers 1 and 5 in the bolded cells, the answer, forming part of the escape\'s hour, 15.' }
     ]
   },
   {
-    title: '6 Icon Picture Key',
+    title: 'The Chalkboard',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'From folded wing, inked shade, ciphered hall, ghostly mark, and rhythmic clang, a pattern of figures emerges—bind them as the cartographer\'s key, and upon the prison\'s chart, their union shall unveil the hidden cell.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Take the answers from each of the six puzzles you\'ve solved—numbers whispered through folded wings, torn ink, ciphered halls, ghostly marks, rhythmic clangs, and scattered shards. Do these figures align like points on a lattice, a grid of intent veiled as mere digits? Might they pair with a chart already in your hands, tracing a path unseen?' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Take the answers from the previous puzzles you should have 6 numbers. These are grid co-ordinates to be used with the blueprint of the prison already provided. The answer is: 345,967 which on the map reveals the Laundry Room.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'In the Rec Room where players dare, chalk marks battle in open air, but one line\'s gone, erased or missed - what\'s the number that should exist?' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Examine the tally marks and find the missing score by working out the rules of the number sequence.' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The chalkboard\'s tallies are 5, 7, ?, 19, 31, 50. This is a number sequence pattern. The pattern is to add the previous two numbers together to get the next number in the sequence: 5 + 7 = 12, 12 + 19 = 31, etc. Your missing number, and so the answer you need, is 12.' }
     ]
   },
   {
-    title: 'Torn Letter',
+    title: 'The Dominoes Game',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Gather the shards of whispered words, where hue betrays the quill\'s intent; in the mosaic of shadow and light, a digit dances—unseen up close, yet bold when the eye retreats.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Piece the torn letter back together like a puzzle, then notice any differences in the ink colour to spot the hidden number.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Once you\'ve pieced the torn pieces of letter together, if you step back you\'ll notice some of the text is in a different shade of ink. This reveals the number 3.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'I\'m played in turns, with tiles in hand, matching ends is how I stand. But place me wrong, the chain breaks fast - what simple rule have you surpassed?' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Check the dominoes for pairs that don’t follow the rules of dominoes (where the numbers on touching sides differ). Check the introduction card for a clue for what to do with them. ' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Find the pieces in the game where the numbers don’t match. Using the clue of “add-up” on the introduction card, add these together next: 9 + 2 + 3 + 1 + 4+ 3 = 22. This provides 22 as the number you’re looking for.' }
     ]
   },
   {
-    title: 'Postcard',
+    title: 'The 4 Icons',
     hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Where the palace boasts its rank of seven, a cipher guards the tongue of ink—beyond each silent void, twist the trailing runes by the wonder\'s count, and truth shall rise from the postcard\'s veil.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Look at the word "seventh" on the front of the postcard, then check the message on the back—shift the letters after each blank space to find the hidden answer.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'This is a caesar cipher using a shift of 7 as revealed on the front of the postcard. You then take each of the letters revealed after each deliberate space: L (glitz), B (remember) ,Q (enquire), and apply the shift of 7 (simply counting along 7 letters) so L = S, Q = X, B = I, revealing the answer of SIX.' }
+      { title: 'Hint 1 - I need a pointer...', content: 'Once you\'ve completed all the puzzles, you now have 4 numbers, each number relating to one of the 4 images on the icon card. Finch has asked you to find out the date and time the inmates are planning their escape.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'When you\'ve completed each puzzle you now have 4 numbers. Might these correspond to a date and time?' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Each of the numbers from the puzzles you\'ve solved correspond reveal a number that is the date and time of escape. The answer revealed is a date of the 25th December (25/12) and a time of 22:15pm.' }
     ]
   },
-  {
-    title: 'Paper with Lines',
-    hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'Seek the cipher where the wind meets its wings; in the shadow of the crease, a secret sings—bend the sheet as the sky demands, and the figure shall rise from folded hands.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Start by folding the paper into a basic paper airplane shape with the point at the top, and look closely at the final shape for any visible numbers.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'If you fold this paper into a paper airplane, the marking on the plane join together to reveal the answer 4.' }
-    ]
-  }
 ]
 
 export default function GuessCodewordPage() {
