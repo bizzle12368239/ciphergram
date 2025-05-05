@@ -339,7 +339,7 @@ export default function GuessCodewordPage() {
             </div>
             <div className="success-details">
             <img src="/Header info.png" alt="Header Information" style={{ width: '70%', marginBottom: '0.1rem' }} />
-            <p>Congratulations on successfully solving and linking all III parts of the escape investigation!</p>
+            <p>Congratulations on successfully solving and linking all 3 parts of the escape investigation!</p>
 
 <p>Thanks to your efforts, we now understand the where, how, and when of the escape, disrupting Moretti's carefully orchestrated plot. Without your intervention, the inmates might have succeeded and put the wider society at risk.</p>
 
