@@ -40,7 +40,7 @@ export default function Home() {
   // 🔁 Monitor time to trigger fade early enough
   useEffect(() => {
     let animationFrameId;
-
+//redeploy //
     const checkVideoTime = () => {
       const video = videoRef.current;
       if (video && video.duration && !fadeToBlackOverlay && !hasFaded) {
