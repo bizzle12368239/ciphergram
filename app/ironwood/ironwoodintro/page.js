@@ -91,7 +91,7 @@ export default function Home() {
             src="/Escape From Ironwood Long Black.png"
             alt="Escape From Ironwood Logo"
           />
-          <h2 className="teaser-heading">COMING SOON: <br />Your task is to help foil a daring escape from Ironwood Correctional Facility</h2>
+          <h2 className="teaser-heading">AVAILABLE NOW <br />Visit ciphergrampuzzles.com to play - Your task is to help foil a daring escape from Ironwood Correctional Facility</h2>
           <br />  
           <button onClick={() => window.location.href = '/'}> Return to <br />Ciphergram Home</button>
         </div>

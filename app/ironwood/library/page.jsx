@@ -10,8 +10,9 @@ const HINT_GROUPS = [
     hints: [
       { title: 'Hint 1 - I need a pointer...', content: 'Pluck the tail of each decimal\'s dance, find its echo in the title\'s letters, and weave those fragments into a hidden truth. The truth will unlock what\'s silently waiting to respond.' },
       { title: 'Hint 2 - I\'m really stuck...', content: 'Focus on the classification numbers\' last digits and count that many letters into each book\'s title to reveal a scrambled answer, the codeword to be sent via email to the accomplice.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'Take the last digit of each classification number and count that many letters into the corresponding book title, revealing letters, which forms an anagram of the word SHADOW. The codeword to be sent in your email subject line. Can\'t send an email? By sending an email to Moretti\'s accomplice with the code word \'SHADOW\' in the subject line, the accomplice replies with the number you need: SIXTEEN.' }
-    ]
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'Take the last digit of each classification number and count that many letters into the corresponding book title, revealing letters, which forms an anagram of the word SHADOW. The codeword to be sent in your email (either the subject line or the body of the email or body). ' },
+      { title: 'Can\'t send an email?', content: 'By sending an email to Moretti\'s accomplice with the code word ‘SHADOW’ in the subject line, the accomplice replies with the number you need: SIXTEEN.' }
+     ]
   },
   {
     title: 'The Maze',

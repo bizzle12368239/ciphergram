@@ -141,7 +141,7 @@ export default function Home() {
             <p className="game-description">
               A thrilling escape room puzzle you can play from the comfort of your home. Solve mysteries, crack codes, and unlock the secrets of Ironwood.
             </p>
-            <button className="button">Coming Soon</button>
+            <button className="button"><Link href="ciphergrampuzzles.com">Play Now</Link></button>
           </div>
 
           {/* The Midnight Vault Heist */}
@@ -150,7 +150,7 @@ export default function Home() {
             <p className="game-description">
               A highly anticipated puzzle game set in a high-security vault. Will you be able to break in and escape without triggering the alarm?
             </p>
-            <button className="button">Coming Soon</button>
+            <button className="button"><Link href="ciphergrampuzzles.com">Play Now</Link></button>
           </div>
         </div>
 

@@ -9,7 +9,7 @@ const HINT_GROUPS = [
     title: 'The Playing Cards and Riddle',
     hints: [
       { title: 'Hint 1 - I need a pointer...', content: 'Among the fallen suits of jest, the inked voice speaks in veiled request.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Read the poem carefully to identify which card details - like suits or numbers - it highlights. Towards the end it suggests what to do with them…' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Read the riddle carefully to identify which card details - like suits or numbers - it highlights. Towards the end it suggests what to do with them…' },
       { title: 'Hint 3 - Ok, just give it to me!', content: 'The poem guides you to select cards (Queen, 4, 5, Ace, 5) whose numbers summed (10 + 4 + 5 + 1 + 5 = 25) spell out the escape day, the 25th. The room introduction card points you to add-up the cards.' }
     ]
   },

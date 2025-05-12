@@ -10,7 +10,7 @@ const HINT_GROUPS = [
     hints: [
       { title: 'Hint 1 - I need a pointer...', content: 'Look back at Moretti’s prisoner profile again, wasn’t something mentioned about a strange symbol?' },
       { title: 'Hint 2 - I\'m really stuck...', content: 'Study Moretti in the center of the photo, particularly his hand, where a tattoo might reveal something significant. Finch has provided a guide on the noted tattoos of Moretti and his known associates that might be helpful here.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'In the photo of Moretti, a tattoo on his hand, noted in his profile, cleverly hides the number 7 within a butterfly design, giving you the answer you’re looking for. ' }
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'In the photo of Moretti, a tattoo on his hand, noted in his profile, cleverly hides the number 7 within a butterfly design (the number 7 also highlighted by Finch’s tattoo guide), giving you the answer you’re looking for.' }
     ]
   },
   {
@@ -18,15 +18,7 @@ const HINT_GROUPS = [
     hints: [
       { title: 'Hint 1 - I need a pointer...', content: 'The guards’ recording of strange repetitive and rhythmic tapping noises, feels like it holds patterns worth exploring.' },
       { title: 'Hint 2 - I\'m really stuck...', content: 'Listen to the tapping sounds and break them into high and low sounds, then use the correct code-breaking tool provided by Finch to translate the sequence into a codeword which may link to what you need. Finch has provided a guide on the noted tattoos of Moretti and his known associates that might be helpful here.' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'The audio’s tapping is in morse code, and instead of long and short taps, the prisoners are using high and low sounding taps. Using the decoder from your code-breaking toolkit, separate each pattern in its high and low taps using the chart. Each individual pattern reveals a letter, and all the letters form the word STALLION, which corresponds to the horse icon key in your toolkit, valued at 8, the answer you are looking for. ' }
-    ]
-  },
-  {
-    title: 'The 6 Icons',
-    hints: [
-      { title: 'Hint 1 - I need a pointer...', content: 'A detailed layout among your belongings draws your attention, its criss-crossed lines waiting for the right markers to reveal their purpose.' },
-      { title: 'Hint 2 - I\'m really stuck...', content: 'Take the answers from each of the six puzzles you’ve solved in this room, each of these should relate to one of the 6 images on the icon card - might they pair with a blueprint already in your hands, tracing a path unseen?' },
-      { title: 'Hint 3 - Ok, just give it to me!', content: 'The six numbers from the puzzle are coordinates. The order of the numbers is revealed by the order of the puzzles on the icon card. Plotting 348, 967 on the prison blueprint reveals the Laundry Room, the escape’s starting point.' }
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The audio’s tapping is in morse code, and instead of long and short taps, the prisoners are using high and low sounding taps. Using the decoder from your code-breaking toolkit, separate each pattern in its high and low taps using the chart. Each individual pattern reveals a letter, and all the letters form the word STALLION, which corresponds to the horse tattoo in your toolkit, valued at 8, the answer you are looking for. ' }
     ]
   },
   {
@@ -52,7 +44,15 @@ const HINT_GROUPS = [
       { title: 'Hint 2 - I\'m really stuck...', content: 'The inmates are folding paper 3 times, then in half to make a paper airplane. What does the final shape reveal?' },
       { title: 'Hint 3 - Ok, just give it to me!', content: 'You need to fold the paper into a paper airplane in the format the inmates are using. Start by folding the two corners in to meet at the middle. Repeat this for a total of three times, before folding the entire plane in half. Open up the wings as if ready to throw the plane - the number 4 is revealed on top in plain sight, your answer to this clue.' }
     ]
-  }
+  },
+  {
+    title: 'The 6 Icons',
+    hints: [
+      { title: 'Hint 1 - I need a pointer...', content: 'A detailed layout among your belongings draws your attention, its criss-crossed lines waiting for the right markers to reveal their purpose.' },
+      { title: 'Hint 2 - I\'m really stuck...', content: 'Take the answers from each of the six puzzles you’ve solved in this room, each of these should relate to one of the six images on the icon card - might they pair with a blueprint already in your hands, tracing a path unseen?' },
+      { title: 'Hint 3 - Ok, just give it to me!', content: 'The six numbers from the puzzle are coordinates. The order of the numbers is revealed by the order of the puzzles on the icon card. Plotting 348, 967 on the prison blueprint reveals the Laundry Room, the escape’s starting point.' }
+    ]
+  },
 ]
 
 export default function GuessCodewordPage() {
